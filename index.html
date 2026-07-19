@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SWAFAA — Southwest Airlines Flight Attendant Association</title>
+<meta name="description" content="SWAFAA is a grassroots movement built by and for Southwest Airlines Flight Attendants. Sign the card. Get to a vote. Together we are one.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Jost:wght@200;300;400;500;600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root{
+    --black:#0A0A0A;
+    --off-black:#141414;
+    --white:#FFFFFF;
+    --off-white:#F4F4F3;
+    --panel:#EDEDEC;
+    --line-dark:rgba(255,255,255,0.14);
+    --line-light:rgba(10,10,10,0.14);
+    --gray:#6B6B6B;
+    --gray-light:#A8A8A8;
+    --accent:#C8352E;
+    --display:'Archivo Black', sans-serif;
+    --logotype:'Jost', sans-serif;
+    --body:'Inter', sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+    --maxw:1180px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;}
+  }
+  body{
+    font-family:var(--body);
+    background:var(--white);
+    color:var(--black);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+  h1,h2,h3{
+    font-family:var(--display);
+    font-weight:400;
+    text-transform:uppercase;
+    line-height:0.98;
+    letter-spacing:0.005em;
+  }
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline:2.5px solid var(--accent);
+    outline-offset:3px;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px;height:1px;
+    background:currentColor;
+    display:inline-block;
+  }
+  .wordmark{
+    font-family:var(--logotype);
+    font-weight:300;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+  }
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.16,.8,.3,1), transform .7s cubic-bezier(.16,.8,.3,1);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .reveal-stagger > *{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.16,.8,.3,1), transform .6s cubic-bezier(.16,.8,.3,1);}
+  .reveal-stagger.in > *{opacity:1;transform:translateY(0);}
+  .reveal-stagger.in > *:nth-child(1){transition-delay:.02s;}
+  .reveal-stagger.in > *:nth-child(2){transition-delay:.09s;}
+  .reveal-stagger.in > *:nth-child(3){transition-delay:.16s;}
+  .reveal-stagger.in > *:nth-child(4){transition-delay:.23s;}
+  .reveal-stagger.in > *:nth-child(5){transition-delay:.30s;}
+
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(10,10,10,0.88);
+    backdrop-filter:blur(10px) saturate(140%);
+    -webkit-backdrop-filter:blur(10px) saturate(140%);
+    border-bottom:1px solid var(--line-dark);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 32px;
+    max-width:var(--maxw);margin:0 auto;
+  }
+  .nav-logo{
+    display:flex;align-items:center;gap:12px;
+    color:var(--white);
+    font-size:24px;
+    font-weight:600;
+    letter-spacing:0.08em;
+    font-family:var(--display);
+    transition:opacity .15s ease;
+    cursor:pointer;
+  }
+  .nav-logo:hover{opacity:0.82;}
+  .nav-logo-img{height:46px;width:auto;display:block;}
+  @media(min-width:640px){.nav-logo-img{height:52px;}}
+  .nav-links{display:none;gap:36px;align-items:center;}
+  @media(min-width:900px){.nav-links{display:flex;}}
+  .nav-links a{
+    position:relative;
+    font-size:13px;font-weight:600;color:var(--gray-light);
+    letter-spacing:0.03em;
+    transition:color .15s ease;
+    padding:4px 0;
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:-2px;width:0;height:1.5px;
+    background:var(--white);transition:width .2s ease;
+  }
+  .nav-links a:hover{color:var(--white);}
+  .nav-links a:hover::after{width:100%;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:13px 24px;
+    font-family:var(--mono);
+    font-size:12.5px;font-weight:600;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    border-radius:2px;
+    transition:transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease, box-shadow .15s ease;
+    border:1.5px solid transparent;
+    white-space:nowrap;
+  }
+  .btn-solid-light{background:var(--white);color:var(--black);}
+  .btn-solid-light:hover{transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(255,255,255,0.25);}
+  .btn-outline-light{border-color:rgba(255,255,255,0.4);color:var(--white);}
+  .btn-outline-light:hover{border-color:var(--white);transform:translateY(-2px);}
+  .btn-solid-dark{background:var(--black);color:var(--white);}
+  .btn-solid-dark:hover{transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(10,10,10,0.35);}
+  .btn-outline-dark{border-color:rgba(10,10,10,0.35);color:var(--black);}
+  .btn-outline-dark:hover{border-color:var(--black);transform:translateY(-2px);}
+
+  .hero{
+    background:var(--black);color:var(--white);
+    padding:110px 0 96px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-plane{
+    position:absolute;
+    right:-8%;top:50%;
+    transform:translateY(-50%);
+    width:640px;max-width:none;
+    opacity:0.06;
+    pointer-events:none;
+    animation:driftPlane 22s ease-in-out infinite;
+  }
+  @keyframes driftPlane{
+    0%,100%{transform:translateY(-50%) translateX(0);}
+    50%{transform:translateY(-52%) translateX(-18px);}
+  }
+  .hero-grid-lines{
+    position:absolute;inset:0;pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse 70% 60% at 30% 40%, black, transparent);
+  }
+  .hero-inner{position:relative;max-width:760px;}
+  .hero .eyebrow{color:var(--gray-light);}
+  .hero h1{
+    font-size:clamp(38px, 6.2vw, 72px);
+    margin-bottom:26px;
+  }
+  .hero h1 .hollow{
+    -webkit-text-stroke:1.5px var(--white);
+    color:transparent;
+  }
+  .hero p.lede{
+    font-size:18px;color:var(--gray-light);
+    max-width:52ch;margin-bottom:36px;
+    font-weight:400;
+  }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:30px;}
+  .hero-tag{
+    font-family:var(--logotype);
+    font-size:13px;letter-spacing:0.28em;text-transform:uppercase;
+    color:var(--gray-light);
+  }
+  section{padding:100px 0;}
+  .section-head{max-width:680px;margin-bottom:56px;}
+  .section-head h2{font-size:clamp(30px,4vw,46px);}
+  .section-head p{color:var(--gray);font-size:16.5px;margin-top:16px;}
+
+  .mission{background:var(--white);}
+  .mission-grid{display:grid;grid-template-columns:1fr;gap:48px;}
+  @media(min-width:900px){.mission-grid{grid-template-columns:1.1fr 0.9fr;}}
+  .mission-text p{font-size:16.5px;color:#2A2A2A;margin-bottom:18px;max-width:56ch;}
+  .stat-block{border:1.5px solid var(--line-light);padding:0;}
+  .stat-row{display:flex;justify-content:space-between;align-items:baseline;padding:22px 24px;border-bottom:1.5px solid var(--line-light);transition:background .2s ease;}
+  .stat-row:hover{background:var(--off-white);}
+  .stat-row:last-child{border-bottom:none;}
+  .stat-num{font-family:var(--display);font-size:30px;}
+  .stat-label{font-family:var(--mono);font-size:11.5px;color:var(--gray);letter-spacing:0.05em;text-transform:uppercase;text-align:right;max-width:52%;}
+
+  .process{background:var(--panel);}
+  .steps{display:grid;grid-template-columns:1fr;gap:0;}
+  @media(min-width:860px){.steps{grid-template-columns:repeat(4,1fr);}}
+  .step{padding:28px 24px 28px 0;border-top:2px solid var(--black);transition:padding-top .25s ease;}
+  .step:hover{padding-top:36px;}
+  @media(min-width:860px){.step{padding-right:26px;}.step:not(:last-child){border-right:1px dashed var(--line-light);}}
+  .step-num{font-family:var(--mono);font-weight:600;font-size:15px;letter-spacing:0.05em;color:var(--gray);margin-bottom:16px;}
+  .step h3{font-family:var(--body);font-weight:700;text-transform:none;letter-spacing:0;font-size:17px;margin-bottom:9px;}
+  .step p{font-size:14.5px;color:var(--gray);}
+
+  .cardsec{background:var(--black);color:var(--white);}
+  .cardsec-grid{display:grid;grid-template-columns:1fr;gap:52px;align-items:start;}
+  @media(min-width:960px){.cardsec-grid{grid-template-columns:0.95fr 1.05fr;}}
+  .cardsec h2{color:var(--white);}
+  .card-points li{display:flex;gap:12px;margin-bottom:14px;font-size:14.5px;color:#D0D0D0;}
+  .card-points li::before{content:"—";color:var(--white);flex-shrink:0;}
+  .card-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px;}
+  .authcard{background:var(--white);color:var(--black);border-radius:6px;overflow:hidden;box-shadow:0 40px 80px -20px rgba(0,0,0,0.6);transition:transform .3s ease, box-shadow .3s ease;}
+  .authcard:hover{transform:translateY(-6px);box-shadow:0 50px 100px -20px rgba(0,0,0,0.7);}
+  .authcard-brand img{width:100%;height:auto;display:block;}
+  .authcard-text{padding:40px;font-size:16.5px;line-height:1.6;color:#2A2A2A;}
+  .authcard-text p{margin-bottom:20px;}
+  .authcard-text p:last-child{margin-bottom:0;}
+
+  .gov{background:var(--white);}
+  .gov-grid{display:grid;grid-template-columns:1fr;gap:52px;align-items:center;}
+  @media(min-width:960px){.gov-grid{grid-template-columns:1fr 1fr;}}
+  .gov-photo-wrap{position:relative;}
+  .gov-photo-wrap img{width:100%;height:auto;display:block;border-radius:6px;box-shadow:0 50px 90px -30px rgba(0,0,0,0.45);}
+  .gov-photo-badge{position:absolute;left:14px;bottom:14px;background:var(--black);color:var(--white);padding:16px 22px;border-radius:4px;box-shadow:0 20px 40px -12px rgba(0,0,0,0.5);}
+  @media(max-width:640px){.gov-photo-badge{left:14px;bottom:14px;}}
+  .gov-photo-badge .gb-num{font-family:var(--display);font-size:26px;line-height:1;}
+  .gov-photo-badge .gb-label{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-light);margin-top:6px;}
+  .gov-text p{color:#2A2A2A;font-size:16.5px;margin-bottom:18px;max-width:56ch;}
+  .gov-points{margin:24px 0 30px;}
+  .gov-points li{display:flex;gap:12px;margin-bottom:13px;font-size:14.5px;color:#2A2A2A;}
+  .gov-points li::before{content:"—";color:var(--black);flex-shrink:0;}
+  .gov-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
+  .gov-actions .filesize{font-family:var(--mono);font-size:11.5px;color:var(--gray);letter-spacing:0.03em;}
+
+  .last{background:var(--off-white);}
+  .last-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line-light);border:1px solid var(--line-light);}
+  @media(min-width:700px){.last-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(min-width:1050px){.last-grid{grid-template-columns:repeat(4,1fr);}}
+  .last-card{background:var(--off-white);padding:28px 24px;transition:background .2s ease;}
+  .last-card:hover{background:var(--white);}
+  .last-card h3{font-family:var(--body);font-weight:700;text-transform:none;letter-spacing:0;font-size:16.5px;margin-bottom:10px;}
+  .last-card p{font-size:14px;color:var(--gray);}
+
+  .team-section{background:var(--off-white);padding:80px 0;}
+  .team-content{display:grid;grid-template-columns:1fr;gap:48px;align-items:center;}
+  @media(min-width:900px){.team-content{grid-template-columns:1fr 1fr;}}
+  .team-text h2{margin-bottom:24px;}
+  .team-text p{font-size:16.5px;color:#2A2A2A;margin-bottom:18px;max-width:56ch;}
+  .team-image{position:relative;overflow:hidden;border-radius:4px;box-shadow:0 20px 40px rgba(0,0,0,0.1);}
+  .team-image img{width:100%;height:auto;display:block;}
+
+  .faq{background:var(--white);}
+  .faq-controls{margin-bottom:28px;}
+  .faq-search-wrap{position:relative;margin-bottom:18px;}
+  .faq-search{width:100%;padding:16px 46px 16px 18px;border:1.5px solid var(--black);font-family:var(--mono);font-size:14px;background:var(--white);color:var(--black);transition:box-shadow .15s ease;}
+  .faq-search:focus{outline:none;box-shadow:0 0 0 3px rgba(10,10,10,0.08);}
+  .faq-search-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--gray);pointer-events:none;}
+  .faq-tabs{display:flex;flex-wrap:wrap;gap:8px;}
+  .faq-tab{padding:9px 16px;font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;border:1.5px solid var(--line-light);color:var(--gray);border-radius:20px;transition:all .15s ease;}
+  .faq-tab:hover{border-color:var(--black);color:var(--black);}
+  .faq-tab.active{background:var(--black);color:var(--white);border-color:var(--black);}
+  .faq-count{font-family:var(--mono);font-size:12px;color:var(--gray);}
+  .faq-list{border-top:1px solid var(--line-light);}
+  .faq-item{border-bottom:1px solid var(--line-light);}
+  .faq-q{width:100%;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 4px;font-size:16px;font-weight:600;transition:background .15s ease;}
+  .faq-q:hover{background:var(--off-white);}
+  .faq-q .qn{font-family:var(--mono);font-weight:600;color:var(--gray-light);font-size:13px;margin-right:14px;flex-shrink:0;}
+  .faq-q-text{flex:1;}
+  .faq-q-text mark{background:#FFE9A8;color:inherit;border-radius:2px;padding:0 1px;}
+  .faq-q .plus{font-family:var(--mono);font-size:18px;flex-shrink:0;transition:transform .25s ease;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .faq-a-inner{padding:0 4px 22px 51px;font-size:14.5px;color:var(--gray);max-width:70ch;}
+  .faq-a-inner mark{background:#FFE9A8;color:inherit;border-radius:2px;padding:0 1px;}
+  .faq-empty{padding:40px 4px;color:var(--gray);font-family:var(--mono);font-size:14px;text-align:center;}
+  .faq-topbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin:22px 0 14px;}
+  .faq-actions{display:flex;gap:10px;}
+  .faq-mini-btn{font-family:var(--mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--gray);border:1px solid var(--line-light);padding:6px 12px;border-radius:16px;transition:all .15s ease;}
+  .faq-mini-btn:hover{color:var(--black);border-color:var(--black);}
+
+  footer{background:var(--black);color:var(--gray-light);}
+  .foot-top{padding:90px 0 60px;border-bottom:1px solid var(--line-dark);}
+  .foot-grid{display:grid;grid-template-columns:1fr;gap:48px;}
+  @media(min-width:900px){.foot-grid{grid-template-columns:1.2fr 1fr;}}
+  .foot-top h2{color:var(--white);font-size:clamp(28px,4vw,42px);margin-bottom:18px;}
+  .foot-top p{font-size:15.5px;max-width:48ch;margin-bottom:26px;}
+  .foot-contact{border:1px solid var(--line-dark);padding:24px;}
+  .foot-contact-row{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line-dark);font-size:14px;}
+  .foot-contact-row:last-child{border-bottom:none;}
+  .foot-contact-row span:first-child{font-family:var(--mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--gray-light);}
+  .foot-contact-row span:last-child{color:var(--white);text-align:right;}
+  .qr-wrap{display:flex;align-items:center;gap:18px;background:var(--white);padding:16px 18px;margin-top:20px;border-radius:4px;}
+  #qrcode{flex-shrink:0;}
+  .qr-text{color:var(--black);}
+  .qr-text .qt1{font-family:var(--display);font-size:15px;line-height:1.2;}
+  .qr-text .qt2{font-family:var(--mono);font-size:11px;color:var(--gray);margin-top:6px;}
+  .foot-bottom{padding:26px 0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12px;color:#6E6E6E;}
+  .foot-bottom .fw{font-family:var(--logotype);letter-spacing:0.2em;color:var(--gray-light);}
+
+  .totop{
+    position:fixed;right:22px;bottom:22px;z-index:90;
+    width:46px;height:46px;border-radius:50%;
+    background:var(--black);color:var(--white);
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;pointer-events:none;transform:translateY(10px);
+    transition:opacity .25s ease, transform .25s ease;
+    box-shadow:0 10px 30px -8px rgba(0,0,0,0.5);
+  }
+  .totop.show{opacity:1;pointer-events:auto;transform:translateY(0);}
+  .totop:hover{transform:translateY(-3px);}
+</style>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a href="#top" class="nav-logo" id="homeLogo" aria-label="SWAFAA — Return to home page">
+      SWAFAA
+    </a>
+    <ul class="nav-links">
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#process">The Process</a></li>
+      <li><a href="#card">The Card</a></li>
+      <li><a href="#constitution">Constitution</a></li>
+      <li><a href="#faq">100 Questions</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="SWAFAA_Authorization_Card.pdf" download class="btn btn-solid-light">Get the Card</a>
+  </nav>
+</header>
+<main id="top">
+  <section class="hero">
+    <div class="hero-grid-lines" aria-hidden="true"></div>
+    <svg class="hero-plane" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M30 4 L30 16 L54 26 L54 29 L30 23 L30 30 L36 34 L36 36 L30 35 L24 36 L24 34 L30 30 L30 23 L6 29 L6 26 L30 16 Z" stroke="white" stroke-width="0.6" fill="none" stroke-linejoin="round"/>
+    </svg>
+    <div class="wrap hero-inner">
+      <div class="eyebrow reveal">Grassroots · Southwest Airlines Flight Attendants</div>
+      <h1 class="reveal">BUILT DIFFERENT.<br>WE'RE NOT LIKE<br>THE REST. WE'RE<br><span class="hollow">SWAFAA.</span></h1>
+      <p class="lede reveal">A movement built by working Flight Attendants who believe we deserve another option — one that's transparent, accountable, and 100% focused on Southwest Airlines Flight Attendants. Every dollar. Every decision. Every time.</p>
+      <div class="hero-actions reveal">
+        <a href="#card" class="btn btn-solid-light">Get Your Card</a>
+        <a href="#faq" class="btn btn-outline-light">Read the 100 Toughest Questions</a>
+      </div>
+      <div class="hero-tag reveal">Together We Are One</div>
+    </div>
+  </section>
+
+  <section class="mission" id="mission">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Mission &amp; Vision</div>
+        <h2>Choice, under the law</h2>
+      </div>
+      <div class="mission-grid">
+        <div class="mission-text reveal">
+          <p>SWAFAA is a grassroots movement created by and for working Flight Attendants. We are not yet a certified union, but we are building something better — member-led, transparent, and focused on what you actually need.</p>
+          <p>This is about choice under the Railway Labor Act. The RLA gives every Flight Attendant the right to organize and choose their own representative. The National Mediation Board runs fair elections. Authorization cards are just what gets us to a vote — they are not the vote itself. And changing representatives never cancels your existing contract.</p>
+          <p>This isn't about hating any other union or the people in it. It's about believing Flight Attendants deserve another option — and that the choice should be yours.</p>
+        </div>
+        <div class="stat-block reveal">
+          <div class="stat-row"><span class="stat-num" data-count="100" data-suffix="%">0%</span><span class="stat-label">Volunteer built. No one draws a paycheck.</span></div>
+          <div class="stat-row"><span class="stat-num" data-count="0" data-prefix="$">$0</span><span class="stat-label">Paid to organizers or leadership, to date.</span></div>
+          <div class="stat-row"><span class="stat-num" data-count="50" data-prefix="&gt;" data-suffix="%">&gt;50%</span><span class="stat-label">Cards needed to trigger an NMB election.</span></div>
+          <div class="stat-row"><span class="stat-num" data-count="1" data-suffix="&nbsp;yr">1&nbsp;yr</span><span class="stat-label">How long a signed card stays valid.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="process" id="process">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">How It Actually Works</div>
+        <h2>From card to contract</h2>
+        <p>This is a real, legal process run by a federal agency — not a company process, and not a popularity contest. Here's exactly what happens, in order.</p>
+      </div>
+      <div class="steps reveal-stagger">
+        <div class="step">
+          <div class="step-num">01 / SIGN</div>
+          <h3>You sign the card</h3>
+          <p>You confidentially authorize SWAFAA to petition for a vote. It isn't a vote itself, isn't binding, and you can withdraw it any time before we file.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02 / BUILD</div>
+          <h3>We build a majority</h3>
+          <p>Cards from more than 50% of Southwest Flight Attendants are needed before anything gets filed. Every base, every domicile.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03 / FILE</div>
+          <h3>NMB verifies interest</h3>
+          <p>We file with the National Mediation Board. They independently verify the showing of interest — the company never sees who signed.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">04 / VOTE</div>
+          <h3>Secret ballot election</h3>
+          <p>The NMB runs a federally supervised secret ballot. Every Flight Attendant votes — for SWAFAA, for the current union, or for neither.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cardsec" id="card">
+    <div class="wrap cardsec-grid">
+      <div class="reveal">
+        <div class="eyebrow">Get Involved</div>
+        <h2>The card, explained</h2>
+        <p style="color:var(--gray-light);font-size:16.5px;margin-top:16px;margin-bottom:28px;max-width:48ch;">Signing costs you nothing and locks you into nothing. It just says: I want the opportunity to vote.</p>
+        <ul class="card-points">
+          <li>Not a vote — just a request for the chance to hold one</li>
+          <li>Confidential. The company never sees individual signatures</li>
+          <li>Reversible any time before we file with the NMB</li>
+          <li>Valid for one year from the date you sign</li>
+          <li>Only original handwritten signatures are valid</li>
+        </ul>
+        <div class="card-actions">
+          <a href="SWAFAA_Authorization_Card.pdf" download class="btn btn-solid-light">Download the Card</a>
+          <a href="SWAFAA_Flyer.pdf" download class="btn btn-outline-light">Download the Flyer</a>
+        </div>
+      </div>
+      <div class="authcard authcard-brand reveal">
+        <div class="authcard-text">
+          <p>The Authorization Card is a confidential document that Southwest Airlines Flight Attendants sign to request the opportunity to vote for union representation.</p>
+          <p>This is your voice. This is your choice. This is how we get to a vote.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gov" id="constitution">
+    <div class="wrap gov-grid">
+      <div class="gov-photo-wrap reveal">
+        <img src="swafaacard.jpg" alt="SWAFAA Authorization Card — the confidential card Southwest Airlines Flight Attendants sign to request the opportunity to vote." loading="lazy">
+        <div class="gov-photo-badge">
+          <div class="gb-num">89</div>
+          <div class="gb-label">Pages of<br>Governance</div>
+        </div>
+      </div>
+      <div class="gov-text reveal">
+        <div class="eyebrow">The Framework</div>
+        <h2>Constitution &amp; Bylaws</h2>
+        <p>This is the document that makes SWAFAA different — the founding rulebook that puts members, not leadership, in permanent control. It spells out how officers are elected, how they can be voted out, how every dollar is tracked, and why SWAFAA can never be quietly merged, sold, or absorbed into another union without members saying so first.</p>
+        <p>A built-in Guardian role keeps watch over finances and ethics long after the founding term ends — and that safeguard can never be stripped away, even by future leadership. Everything else stays exactly where it belongs: in members' hands.</p>
+        <ul class="gov-points">
+          <li>Member-driven governance — elections, referenda, and override power stay with you</li>
+          <li>Full financial transparency — quarterly reports and an independent annual audit</li>
+          <li>Permanent independence — no merger or affiliation without a member vote</li>
+          <li>Term limits, recall, and a locked-in anti-corruption Guardian role</li>
+        </ul>
+        <div class="gov-actions">
+          <a href="SWAFAA_Constitution_Bylaws.pdf" download class="btn btn-solid-dark">Download the Constitution &amp; Bylaws</a>
+          <span class="filesize">PDF · Full Constitution, Bylaws &amp; Appendices</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="last" id="last">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Built To Last</div>
+        <h2>How we stay different</h2>
+        <p>The honest question isn't "why should I trust you today." It's "what stops this from becoming exactly what it replaced." Here's the structure built to answer that.</p>
+      </div>
+      <div class="last-grid reveal-stagger">
+        <div class="last-card">
+          <h3>Term limits</h3>
+          <p>Leadership doesn't get to stay indefinitely. Fresh perspectives and a real connection to the day-to-day job are written into the structure, not left to goodwill.</p>
+        </div>
+        <div class="last-card">
+          <h3>Recall &amp; elections</h3>
+          <p>Members can vote leadership out. The founding team builds the organization for a defined startup period — then leadership transitions to member elections.</p>
+        </div>
+        <div class="last-card">
+          <h3>Financial transparency</h3>
+          <p>Regular, plain-language reports on where every dollar comes from and where it goes. If it can't be explained clearly, it shouldn't be asked for.</p>
+        </div>
+        <div class="last-card">
+          <h3>The Guardian role</h3>
+          <p>Once the organization is stable, founding leadership steps back from day-to-day control into an oversight role — watching for the decay, rot, or dishonesty that started this movement in the first place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="team-section" id="team">
+    <div class="wrap">
+      <div class="team-content reveal-stagger">
+        <div class="team-text reveal">
+          <div class="eyebrow">Our Team</div>
+          <h2>Built by working Flight Attendants</h2>
+          <p>SWAFAA was founded and is led by Flight Attendants who understand the job from the inside. We're not distant consultants or outside organizers. We fly the line, know the challenges, and are committed to building something that works for everyone.</p>
+          <p>Every decision we make is rooted in the reality of what it means to be a Southwest Airlines Flight Attendant. That's what makes us different.</p>
+        </div>
+        <div class="team-image reveal">
+          <img src="swafaaofficerphoto.jpeg" alt="SWAFAA leadership team">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">No Dodging</div>
+        <h2>The 100 toughest questions</h2>
+        <p>BUILT DIFFERENT. WE'RE NOT LIKE THE REST. WE'RE SWAFAA. Search below or filter by topic.</p>
+      </div>
+      <div class="faq-controls reveal">
+        <div class="faq-search-wrap">
+          <input type="text" class="faq-search" id="faqSearch" placeholder="Search all 100 questions… e.g. &quot;dues&quot; or &quot;strike&quot;" aria-label="Search questions">
+          <svg class="faq-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="faq-tabs" id="faqTabs"></div>
+      </div>
+      <div class="faq-topbar reveal">
+        <div class="faq-count" id="faqCount"></div>
+        <div class="faq-actions">
+          <button class="faq-mini-btn" id="expandAll" type="button">Expand all</button>
+          <button class="faq-mini-btn" id="collapseAll" type="button">Collapse all</button>
+        </div>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+    </div>
+  </section>
+</main>
+<footer id="contact">
+  <div class="wrap foot-top">
+    <div class="foot-grid">
+      <div class="reveal">
+        <h2>Our strength.<br>Our voice.<br>Our future.</h2>
+        <p>SWAFAA is organized by working Southwest Airlines Flight Attendants. Not affiliated with Southwest Airlines management or any existing union. Every card is handled confidentially, in line with National Mediation Board rules.</p>
+        <div class="card-actions">
+          <a href="SWAFAA_Authorization_Card.pdf" download class="btn btn-solid-light">Download the Card</a>
+          <a href="mailto:swafaa@mail.com" class="btn btn-outline-light">Email Organizers</a>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="foot-contact">
+          <div class="foot-contact-row"><span>Website</span><span>swafaa.com</span></div>
+          <div class="foot-contact-row"><span>Email</span><span>swafaa@mail.com</span></div>
+          <div class="foot-contact-row"><span>Mail</span><span>SWAFAA Organizing Group<br>PO Box 25, Fulshear, TX 77441</span></div>
+          <div class="foot-contact-row"><span>Status</span><span>Grassroots — not yet certified</span></div>
+        </div>
+        <div class="qr-wrap">
+          <div id="qrcode"></div>
+          <div class="qr-text">
+            <div class="qt1">SCAN. SIGN.<br>SHARE.</div>
+            <div class="qt2">qrto.to/9f8ea840</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span class="fw">SWAFAA</span>
+    <span>© 2026 SWAFAA Organizing Group. Built by Flight Attendants, for Flight Attendants.</span>
+  </div>
+</footer>
+
+<button class="totop" id="totop" aria-label="Back to top" type="button">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+</button>
+
+<script>
+document.getElementById('homeLogo').addEventListener('click', function(e){
+  e.preventDefault();
+  window.scrollTo({top:0, behavior:'smooth'});
+  history.replaceState(null, '', window.location.pathname);
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const id = this.getAttribute('href');
+    if(id === '#top'){ return; }
+    const target = document.querySelector(id);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+revealEls.forEach(el=>io.observe(el));
+
+function animateCount(el){
+  const target = parseFloat(el.dataset.count);
+  const prefix = el.dataset.prefix || '';
+  const suffix = el.dataset.suffix || '';
+  const isInt = Number.isInteger(target);
+  const dur = 1100;
+  const start = performance.now();
+  function tick(now){
+    const p = Math.min(1, (now - start) / dur);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const val = target * eased;
+    el.textContent = prefix + (isInt ? Math.round(val) : val.toFixed(1)) + suffix.replace('&nbsp;',' ');
+    if(p < 1){ requestAnimationFrame(tick); }
+    else { el.textContent = prefix + target + suffix.replace('&nbsp;',' '); }
+  }
+  requestAnimationFrame(tick);
+}
+const statEls = document.querySelectorAll('.stat-num[data-count]');
+const statIO = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      animateCount(entry.target);
+      statIO.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.5});
+statEls.forEach(el=>statIO.observe(el));
+
+const totop = document.getElementById('totop');
+window.addEventListener('scroll', ()=>{
+  if(window.scrollY > 700){ totop.classList.add('show'); }
+  else{ totop.classList.remove('show'); }
+});
+totop.addEventListener('click', ()=>window.scrollTo({top:0, behavior:'smooth'}));
+
+const QA = [
+{"n":1,"q":"Why are you doing this? What's wrong with TWU?","a":"Honestly, this isn't about hating TWU or hating people. It's about believing Flight Attendants deserve another option. For years I've watched people feel like they weren't being heard. Whether it's communication, transparency, finances, or major decisions, I just kept hearing the same frustrations over and over. I got tired of complaining. So I decided to try doing something about it. If people love TWU, that's completely their choice. I'm not here to force anyone into anything. I'm simply asking, \"Should Flight Attendants have another option?\" I think that's a fair question.","cat":"Trust & Why SWAFAA"},
+{"n":2,"q":"Isn't this just about you wanting power?","a":"If I wanted power, this would probably be the dumbest way to get it. This has been hundreds and hundreds of volunteer hours. I've spent my own money. I've driven all over. I've built the website. I've paid for legal filings. I've answered thousands of questions. Nobody has paid me a dime. I'm doing this because I honestly believe we can build something better.","cat":"Trust & Why SWAFAA"},
+{"n":3,"q":"How do we know you won't become just like TWU?","a":"That's probably one of the best questions you could ask. The answer is... You shouldn't just trust me because I'm Travis. You should hold me accountable. That's exactly why I've talked so much about transparency. If SWAFAA can't explain where money is going... If leadership hides information... If members don't have a voice... Then we've already failed. I don't want anyone blindly following me. I want people asking hard questions.","cat":"Trust & Why SWAFAA"},
+{"n":4,"q":"Why should I sign an Authorization Card?","a":"Because it isn't a vote. That's probably the biggest misconception. The card simply says... \"I want the opportunity to vote.\" That's it. If enough Flight Attendants sign, the National Mediation Board can hold a representation election. THAT'S where everyone votes. Whether someone votes for SWAFAA... TWU... or against us... that's completely their decision. The Authorization Card simply gives everybody the opportunity to make that decision.","cat":"The Card & Election Process"},
+{"n":5,"q":"If SWAFAA loses, then what?","a":"Then the members have spoken. That's how democracy works. I'm not afraid of a vote. Actually... I'm asking FOR one. If Flight Attendants choose TWU... I'll respect it. But I think Flight Attendants deserve the opportunity to decide.","cat":"The Card & Election Process"},
+{"n":6,"q":"Where's the money going?","a":"That's easy. Right back into building this. Legal filings. Website. Printing. Travel. P.O. Box. Educational material. Terminal visits. Marketing. Everything has been volunteer. Nobody is collecting a paycheck. And unlike what many Flight Attendants say they've experienced elsewhere, I want members to always know where their money is going. If we're asking people to trust us with dues one day, then we should be willing to show them exactly how those funds are being used.","cat":"Dues & Finances"},
+{"n":7,"q":"How are you going to run a union without TWU's money?","a":"Every union had a first day. We'd be starting from the ground up financially, just like every organization does. Right now we're building that foundation through donations. If SWAFAA were ever elected, the members—not me—would decide what dues should be. Once dues started coming in, we'd have a steady operating budget just like every other union. The hard part is getting started. After that, it's about being responsible with the members' money.","cat":"Dues & Finances"},
+{"n":8,"q":"Won't we lose our contract?","a":"No. That's probably one of the biggest misconceptions out there. Changing representatives doesn't make the contract disappear. The National Mediation Board has said a change in representation does not alter or cancel an existing agreement. The contract stays in place while the new representative takes over and bargains going forward. Nobody wakes up the next morning without a contract.","cat":"Contract & Negotiations"},
+{"n":9,"q":"Why now?","a":"The frustrations have been building for a long time, and it feels like the right moment to offer a real alternative. People are talking more openly about what's not working — communication, transparency, how decisions get made. I got tired of just hearing the complaints in the galley or on the jumpseat. So I decided to do something about it. This isn't a sudden idea. It's the result of listening to hundreds of Flight Attendants over months and years. If people are happy with the current setup, great — stay with it. But if you've felt unheard, SWAFAA is here as an option. I think giving Flight Attendants a choice is fair.","cat":"Trust & Why SWAFAA"},
+{"n":10,"q":"Are you getting paid for this?","a":"No, not a single dime. This has all been volunteer work from the start. I've used my own time off, my own money for travel and supplies, and countless hours answering messages. Nobody is funding me personally. The donations that come in go straight to legal stuff, the website, printing cards, and terminal visits. That's it. If we ever get to dues, those will be decided by members and used for actual representation. I'm doing this because I believe in it, not for a paycheck.","cat":"Trust & Why SWAFAA"},
+{"n":11,"q":"What makes SWAFAA different from other unions?","a":"We're starting fresh with member input at the center. From the beginning, we're talking about transparency reports, accountability measures, and listening to what Flight Attendants actually want in negotiations. I've seen too many people feel like decisions happen far away from the line. SWAFAA is built to keep the power closer to you. We're not promising perfection, but we are promising to do it differently and learn from what hasn't worked before. That's the difference.","cat":"Trust & Why SWAFAA"},
+{"n":12,"q":"Do you have any union experience?","a":"I don't come from a long career in union leadership, and I'm honest about that. What I do have is years of listening to Flight Attendants, studying the Railway Labor Act and NMB rules, talking to experts, and putting in the volunteer hours to get this started. The real experience will come from all of us — the members — shaping it. I'm not pretending to know everything. That's why I want people asking tough questions and holding leadership accountable from day one.","cat":"Trust & Why SWAFAA"},
+{"n":13,"q":"Is this just a few people pushing this?","a":"No. It started with a small group, but it's growing because so many Flight Attendants are sharing the same frustrations. I've heard from hundreds across bases. This isn't one person's idea anymore — it's becoming a real movement of people who want a voice. The more who get involved, the stronger and more representative it becomes.","cat":"Trust & Why SWAFAA"},
+{"n":14,"q":"What's your background as a Flight Attendant?","a":"I'm a working Flight Attendant just like you. I've seen the same schedules, the same challenges, the same issues in the cabin. That's why I care so much. I'm not some outsider. I live this job every day, and I want it to be better for all of us.","cat":"Trust & Why SWAFAA"},
+{"n":15,"q":"Are you running for a position?","a":"Right now, my focus is getting SWAFAA off the ground and giving Flight Attendants the opportunity to vote. In the beginning, there will need to be a founding leadership team in place to build the organization, establish the infrastructure, create policies and procedures, and get everything operating correctly. That startup phase is the hardest part. Once the organization is stable and running the way it should, leadership would transition to elections by the membership. My vision has always been for the members to choose their leaders once the foundation has been built—not to keep leadership appointed indefinitely.","cat":"Governance & Leadership"},
+{"n":16,"q":"Why should I listen to you specifically?","a":"You shouldn't just because it's me. Listen because of the idea — giving Flight Attendants a real choice. Look at the work we're doing: volunteer hours, transparency promises, studying the law so we can answer questions accurately. Judge us by actions, not by one person. Ask the hard questions. That's how we'll stay on track.","cat":"Trust & Why SWAFAA"},
+{"n":17,"q":"Isn't starting a new union risky?","a":"Any change has some risk, but staying silent about frustrations carries its own risks too. The RLA gives us a clear, legal process. We're following it carefully. The biggest risk is doing nothing and watching the same issues continue. I believe the reward of a member-led union is worth it.","cat":"Trust & Why SWAFAA"},
+{"n":18,"q":"How many people are really behind this?","a":"We're growing every week as more Flight Attendants hear about it and sign cards or share their stories. It started small, like most grassroots efforts, but the response has been strong from people who want change. The exact number isn't as important as the momentum and the conversations happening in terminals right now.","cat":"Trust & Why SWAFAA"},
+{"n":19,"q":"What if this fails?","a":"Then we learn from it and the members have spoken. I'm okay with that outcome because at least we gave people the opportunity to choose. I'd rather try and respect the vote than wonder \"what if.\" Either way, the effort has already sparked important conversations.","cat":"Trust & Why SWAFAA"},
+{"n":20,"q":"Do you have endorsements or support from other unions?","a":"We're focused on being independent and member-led. We're open to learning from anyone, but the decisions will come from Southwest Flight Attendants. That independence is important to a lot of people who want something built specifically for us.","cat":"Trust & Why SWAFAA"},
+{"n":21,"q":"Is signing a card the same as joining the union?","a":"No, not at all. Signing an authorization card is simply saying you want the opportunity to vote in a representation election. It's not joining anything yet. The National Mediation Board looks at the number of cards to decide if there's enough interest to hold a secret ballot election. After that, everyone gets to vote yes, no, or for another option. So it's really just the first step to democracy — giving Flight Attendants a real say.","cat":"The Card & Election Process"},
+{"n":22,"q":"Can I change my mind after signing a card?","a":"Yes, absolutely. The card is not a binding contract. It's just to show interest so we can get to an election. If you sign and later decide you prefer the current union or no union at all, you vote however you want in the secret ballot. No one is locked in. That's one of the protections under the Railway Labor Act.","cat":"The Card & Election Process"},
+{"n":23,"q":"How long are the authorization cards good for?","a":"Usually they're valid for one year from the date you sign. The NMB has rules about this to keep things current. So if we don't get enough interest quickly, we may need to refresh cards, but the goal is to move forward as soon as we have strong support from Flight Attendants.","cat":"The Card & Election Process"},
+{"n":24,"q":"What information is on the authorization card?","a":"It's simple. It basically says you authorize SWAFAA to represent you for the purpose of getting an election. Your name, employee number, signature, and date. Nothing more invasive. We protect your information carefully.","cat":"The Card & Election Process"},
+{"n":25,"q":"Is my signature private?","a":"Yes. The cards are handled according to NMB rules so your employer doesn't see individual signatures. Only the total count matters for showing interest. Your privacy is protected in this process.","cat":"The Card & Election Process"},
+{"n":26,"q":"What happens after we collect enough cards?","a":"We file with the National Mediation Board. They verify the showing of interest (over 50% of the craft or class). Then they schedule a secret ballot election. That's where the real vote happens — mail-in or however they set it up. Everyone gets a chance to choose.","cat":"The Card & Election Process"},
+{"n":27,"q":"How do I know the election will be fair?","a":"The NMB is the federal agency that runs these. They have strict rules for \"laboratory conditions\" so the company can't interfere. The RLA protects your right to vote freely. We'll be watching closely too.","cat":"The Card & Election Process"},
+{"n":28,"q":"What if I don't sign a card?","a":"That's completely fine. You can still vote in the election if one is held. Signing just helps us reach the threshold to get the vote scheduled. No pressure — it's your choice.","cat":"The Card & Election Process"},
+{"n":29,"q":"Do I have to talk to anyone to sign?","a":"No. You can sign on paper privately. We have people available in terminals if you want to ask questions, but there's no requirement to discuss it with anyone if you don't want to.","cat":"The Card & Election Process"},
+{"n":30,"q":"What percentage do we need to get an election?","a":"We need valid authorization cards from more than 50% of the eligible Flight Attendants. That's the NMB standard under the Railway Labor Act. It's a high bar, which is why we're working hard to talk to people.","cat":"The Card & Election Process"},
+{"n":31,"q":"Is this like a card-check election?","a":"No. Under the RLA for airlines, it goes to a secret ballot election run by the NMB once we show enough interest. It's not automatic recognition — everyone gets to vote privately.","cat":"The Card & Election Process"},
+{"n":32,"q":"How long does the whole process take?","a":"It varies, but from filing to election can take several months. The NMB moves at its own pace. We'll keep everyone updated along the way.","cat":"The Card & Election Process"},
+{"n":33,"q":"What if the company delays things?","a":"The RLA and NMB rules are designed to prevent improper delays. If there's interference, we can address it legally. The process is meant to protect employee choice.","cat":"The Card & Election Process"},
+{"n":34,"q":"Can management see who signed?","a":"No. The company does not get to see individual cards. They might know an application was filed, but not who supported it. That's part of the protections.","cat":"The Card & Election Process"},
+{"n":35,"q":"What happens if we don't reach 50%?","a":"We keep building support and can try again later with fresh cards. No harm done — it just means we need more conversations. The effort itself raises awareness.","cat":"The Card & Election Process"},
+{"n":36,"q":"Are there rules against coercion?","a":"Yes. Both the company and any union side can't coerce you. The RLA prohibits interference, influence, or coercion. We follow that strictly — this has to be your free choice.","cat":"The Card & Election Process"},
+{"n":37,"q":"Can I sign a card for more than one group?","a":"No, you sign for one at a time. But you can change your mind before the election. The NMB sorts out valid showings of interest.","cat":"The Card & Election Process"},
+{"n":38,"q":"What's the difference between a card and a vote?","a":"The card is like saying \"I want an election.\" The vote in the NMB election is the real decision — for SWAFAA, for the current union, or no union. Big difference.","cat":"The Card & Election Process"},
+{"n":39,"q":"Will there be campaigning before the election?","a":"Yes, both sides can campaign respectfully. We'll focus on facts, our vision, and answering questions. The NMB oversees to keep it fair.","cat":"The Card & Election Process"},
+{"n":40,"q":"Why is the process so complicated?","a":"The Railway Labor Act is old and designed to avoid disruptions in transportation. That's why there are specific steps. But it does protect your right to choose, and we're following it carefully so everything is legitimate.","cat":"The Card & Election Process"},
+{"n":41,"q":"How much will dues be?","a":"We haven't locked in a number yet because we want member input on that. The goal is to set fair dues that support strong representation without being a burden. We'll look at what other unions charge and what Flight Attendants think is reasonable. If SWAFAA gets elected, the members — not just leadership — will have a real say in setting and reviewing dues. Transparency from the beginning is key.","cat":"Dues & Finances"},
+{"n":42,"q":"Will dues be higher than what people pay now?","a":"I can't promise they'll be lower, but we will be very careful with every dollar. The focus will be on efficiency and delivering real value — better communication, faster grievance handling, and negotiations that reflect what you want. Many people feel they're not getting enough value today, so we aim to change that. Members will help decide the structure and what you pay so it makes sense.","cat":"Dues & Finances"},
+{"n":43,"q":"What about financial transparency?","a":"This is one of the biggest things I've heard. SWAFAA will publish regular, easy-to-understand financial reports to all members. Where the money comes from, where it goes — legal, operations, representation, everything. If we can't explain it clearly, we shouldn't be asking for it. That's the standard we're setting from day one.","cat":"Dues & Finances"},
+{"n":44,"q":"Will I have to pay dues if I don't support SWAFAA?","a":"Under the Railway Labor Act, there can be union security agreements once a union is certified. But we will work to make sure the value is there so people want to support it. The exact rules will be decided with member input. No one should feel forced — the goal is strong, voluntary support through good representation.","cat":"Dues & Finances"},
+{"n":45,"q":"Where will the dues money actually go?","a":"Primarily to representation: negotiators, legal support, grievance handling, communication, and training volunteers. There won't be waste on fancy offices or unnecessary extras. We'll keep overhead low because we're starting member-led. Full reports will show exactly where every dollar goes so you can hold us accountable.","cat":"Dues & Finances"},
+{"n":46,"q":"Who decides how dues are spent?","a":"The members. Through elected leadership and transparent processes, you'll have input and visibility. We're building bylaws and governance that give Flight Attendants real oversight, not just a rubber stamp. That's the difference we're aiming for.","cat":"Dues & Finances"},
+{"n":47,"q":"What if I can't afford dues?","a":"We'll explore options like hardship provisions or payment plans, just like many unions do. The last thing we want is to create financial stress. Representation should help improve your life, not make it harder.","cat":"Dues & Finances"},
+{"n":48,"q":"How do you plan to handle union finances responsibly?","a":"By starting small, documenting everything, and having independent reviews. We'll have clear policies and member oversight from the start. I've seen the complaints about finances elsewhere, and we're determined not to repeat those mistakes.","cat":"Dues & Finances"},
+{"n":49,"q":"Will there be dues check-off?","a":"That's something we can negotiate with the company if elected. It's common and convenient, but again — decided with member input and full transparency on how it works. Dues checkoff (or dues check-off) is simply the process where your employer deducts union dues directly from your paycheck and sends them to the union.","cat":"Dues & Finances"},
+{"n":50,"q":"What happens to dues during negotiations?","a":"Dues support the team working on your contract. They don't stop during bargaining. But the money is used directly for getting you the best possible agreement. We'll keep members updated on progress so you see the value.","cat":"Dues & Finances"},
+{"n":51,"q":"Are there initiation fees?","a":"We'll keep any initiation or joining fees minimal where possible. The focus is on ongoing representation, not upfront costs. Details will be clear before anyone is asked to pay.","cat":"Dues & Finances"},
+{"n":52,"q":"How will you prevent misuse of funds?","a":"Strong internal controls, regular audits, and member access to records. Leadership will be elected and recallable. If something doesn't look right, members can act. Accountability is built in, not optional.","cat":"Dues & Finances"},
+{"n":53,"q":"Will retirees pay dues?","a":"That's a member decision. Some unions have different structures for retirees. We'll listen to what Flight Attendants think is fair.","cat":"Dues & Finances"},
+{"n":54,"q":"What about political spending?","a":"Any political spending will not be permitted and charitable spending will be completely transparent and member-approved. Many people are sensitive about where dues go, so we'll respect that and give clear opt-out options where legally possible.","cat":"Dues & Finances"},
+{"n":55,"q":"How soon after certification would dues start?","a":"We'd work with the NMB and company on a smooth transition. Dues wouldn't start until representation is official and members have been informed and members have decided on due structure and cost. No surprises.","cat":"Dues & Finances"},
+{"n":56,"q":"Can I see a sample budget?","a":"As we grow, we'll share projected budgets so you can see the plan. Right now everything is donation and volunteer funded. We're proving we can be responsible before asking for more.","cat":"Dues & Finances"},
+{"n":57,"q":"What if members don't like how dues are used?","a":"Then we change it. Elected leadership, regular meetings, and voting on major issues. This is your union — not mine. Feedback and adjustments will be part of how we operate.","cat":"Dues & Finances"},
+{"n":58,"q":"How does this compare to other unions' dues?","a":"We'll benchmark against industry standards and aim to deliver better value. Some unions have high dues with strong contracts; others less so. Our focus is maximum value for what Flight Attendants pay.","cat":"Dues & Finances"},
+{"n":59,"q":"Will there be special assessments?","a":"We'll avoid them if possible by budgeting responsibly. If ever needed for something big like a major negotiation, it would require member approval and full explanation.","cat":"Dues & Finances"},
+{"n":60,"q":"Why should I trust you with my dues money?","a":"Because we're starting with nothing but volunteer effort and full transparency promises. Watch how we handle the small stuff now — donations, spending reports, open communication. If we can't get that right, we don't deserve your trust later. Hold us accountable every step.","cat":"Dues & Finances"},
+{"n":61,"q":"Will we have to renegotiate everything from scratch?","a":"No. That's a common worry, but it's not how it works. The existing contract stays in full force when representation changes. The National Mediation Board has made this clear. The new representative steps in and can bargain for improvements or changes going forward. Nobody loses what they already have the day after certification.","cat":"Contract & Negotiations"},
+{"n":62,"q":"How will negotiations be different with SWAFAA?","a":"We'll prioritize member surveys and input before going to the table. Priorities will come from the line — not just leadership. We'll communicate openly during the process so you know what's happening. The goal is a contract that actually reflects what Flight Attendants care about most.","cat":"Contract & Negotiations"},
+{"n":63,"q":"How long will it take to get a new contract?","a":"The Railway Labor Act process can take time — that's just the reality of airline bargaining. But we'll keep members informed every step and push hard for a fair deal. We won't drag things out unnecessarily. Past experience shows good preparation leads to better outcomes.","cat":"Contract & Negotiations"},
+{"n":64,"q":"What if negotiations go badly?","a":"We'll use all the tools under the RLA — mediation if needed. The important thing is having strong member support behind us. Self-help (like strikes) is a last resort and heavily regulated. We'll keep you updated so everyone understands the process.","cat":"Contract & Negotiations"},
+{"n":65,"q":"Will current benefits disappear?","a":"No. The contract remains in effect. Wages, hours, working conditions — everything stays the same until a new agreement is reached. That's a key protection under the RLA.","cat":"Contract & Negotiations"},
+{"n":66,"q":"Can SWAFAA improve the current contract?","a":"Yes. Once certified, we can open negotiations for amendments or a full new agreement. We'll focus on the issues Flight Attendants tell us matter most — scheduling, pay, quality of life, etc.","cat":"Contract & Negotiations"},
+{"n":67,"q":"What about scope and job protections?","a":"Those are major priorities. We'll fight to strengthen protections so the work stays with Southwest Flight Attendants. Member input will guide exactly what we push for.","cat":"Contract & Negotiations"},
+{"n":68,"q":"How will reserve rules be handled?","a":"We'll listen to what reserves and lineholders actually experience and negotiate improvements. The current contract is the floor — we want to build it based on real feedback.","cat":"Contract & Negotiations"},
+{"n":69,"q":"Will vacation and bidding be protected?","a":"Absolutely. Existing provisions stay in place. We can negotiate enhancements based on what people want. Seniority and bidding fairness will be respected.","cat":"Contract & Negotiations"},
+{"n":70,"q":"What about grievance handling?","a":"We'll build a strong network of trained volunteers and representatives so issues get addressed faster and more fairly. The duty of fair representation applies to everyone. No one gets left behind.","cat":"Contract & Negotiations"},
+{"n":71,"q":"Can the company cancel the contract if we change unions?","a":"No. That's not allowed under the Railway Labor Act. The agreement remains binding on the carrier until amended or a new one is negotiated.","cat":"Contract & Negotiations"},
+{"n":72,"q":"What is the difference between major and minor disputes?","a":"Minor disputes (grievances over the current contract) go to arbitration. Major disputes (contract changes) follow the full RLA bargaining process with mediation. We'll explain this clearly so everyone understands their rights.","cat":"Contract & Negotiations"},
+{"n":73,"q":"Will SWAFAA support strikes if needed?","a":"Only as a last resort after all RLA processes are exhausted. Strikes are heavily regulated in our industry. The focus will always be on getting the best deal through preparation and solidarity.","cat":"Contract & Negotiations"},
+{"n":74,"q":"How will you communicate during negotiations?","a":"Regular updates, town halls (virtual and in-person), and clear summaries of proposals. No secrets. Members will know what's on the table and have opportunities to give feedback.","cat":"Contract & Negotiations"},
+{"n":75,"q":"What if we don't like the tentative agreement?","a":"You vote on it. If it doesn't pass, we go back to the table. Leadership works for you — not the other way around. Ratification is your decision.","cat":"Contract & Negotiations"},
+{"n":76,"q":"How will leadership be chosen?","a":"Through elections by the members. We'll set up fair, democratic processes with term limits so no one stays in power forever. The goal is real representation from the line — people who are still flying or have recent experience. Leadership serves the members, not the other way around.","cat":"Governance & Leadership"},
+{"n":77,"q":"Will there be term limits?","a":"Yes. We believe fresh perspectives keep things healthy. Term limits prevent entrenchment and make sure leadership stays connected to the day-to-day realities of the job. Details will be voted on by members.","cat":"Governance & Leadership"},
+{"n":78,"q":"How can members remove bad leadership?","a":"We'll build recall processes and regular elections into the bylaws. If leadership isn't delivering, members will have a clear way to vote them out. That accountability is non-negotiable.","cat":"Governance & Leadership"},
+{"n":79,"q":"Who makes the big decisions?","a":"The membership. Through elected officers, board votes, and direct input on major issues like contract priorities and dues. This won't be top-down. We're designing it to keep power with the Flight Attendants.","cat":"Governance & Leadership"},
+{"n":80,"q":"Will there be a constitution or bylaws?","a":"Yes, and members will have the chance to review and approve them. They'll include transparency requirements, election rules, and member rights. Nothing hidden.","cat":"Governance & Leadership"},
+{"n":81,"q":"How will bases or domiciles be represented?","a":"Fairly. We want representatives from across the system so every base has a voice. No single domicile dominates. System-wide but locally informed.","cat":"Governance & Leadership"},
+{"n":82,"q":"Will there be paid staff?","a":"Some professional staff for legal, negotiations, and admin as we grow — that's normal. But we'll also rely heavily on trained member volunteers to keep costs down and connection strong.","cat":"Governance & Leadership"},
+{"n":83,"q":"How do I run for a position?","a":"Clear, fair nomination and election rules. Any member in good standing can participate. We'll make the process open and accessible.","cat":"Governance & Leadership"},
+{"n":84,"q":"What about diversity of opinions on the board?","a":"We want it. Different viewpoints make us stronger. As long as everyone is committed to the mission and follows democratic rules, there's room for healthy debate.","cat":"Governance & Leadership"},
+{"n":85,"q":"How will you prevent corruption or power abuse?","a":"Strong financial controls, regular audits, term limits, recall options, and full transparency. Members will have access to information. We're learning from past examples and building safeguards from the start.","cat":"Governance & Leadership"},
+{"n":86,"q":"Will there be committees for different issues?","a":"Yes — scheduling, safety, grievances, negotiations, etc. Member volunteers can get involved in areas they care about. This spreads the work and brings more voices in.","cat":"Governance & Leadership"},
+{"n":87,"q":"How often will there be elections?","a":"The proposal is for the founding leadership team to serve the first two 3-year terms (6 years total) to build the organization, establish the infrastructure, and get SWAFAA running smoothly. Before those appointed terms end, the membership would vote on and establish the future election schedule, term lengths, and governance structure through the SWAFAA Constitution and Bylaws. That way, everything is already in place before the transition to member-elected leadership.","cat":"Governance & Leadership"},
+{"n":88,"q":"Can regular lineholders participate in governance?","a":"Absolutely. That's the point. We don't want it run only by full-time union people disconnected from the job. Flying FAs will be encouraged and supported to participate.","cat":"Governance & Leadership"},
+{"n":89,"q":"What role will you have as a regular member?","a":"Vote in elections, give feedback on contracts, volunteer on committees, attend meetings, and hold leadership accountable. Your voice matters at every level.","cat":"Governance & Leadership"},
+{"n":90,"q":"How do we make sure SWAFAA stays member-led long-term?","a":"By baking it into the structure: bylaws, term limits, transparency rules, and a culture of asking hard questions. It won't be perfect, but we'll keep working at it. The members are the union.","cat":"Governance & Leadership"},
+{"n":91,"q":"What if the company tries to interfere or retaliate?","a":"The Railway Labor Act strictly prohibits the company from interfering, influencing, or coercing employees in their choice of representative. If that happens, we document it and take it to the NMB or courts. Your job is protected for participating in this legal process. We're prepared to defend your rights.","cat":"Longevity & Accountability"},
+{"n":92,"q":"Isn't this just going to be divisive?","a":"Choice isn't division — it's democracy. Flight Attendants deserve options. Healthy competition makes every representative better. We respect people who want to stay with the current union. This is about giving everyone a real voice, not forcing sides.","cat":"Longevity & Accountability"},
+{"n":93,"q":"What happens to current union staff and resources?","a":"There would be a professional transition. Some experienced staff may be considered if they share SWAFAA's mission and values, but most of the initial leadership and staff would be appointed by me during the startup phase to help build the organization. As SWAFAA becomes established, leadership would transition to the membership through elections, and the organization would continue to grow based on the members' decisions and needs.","cat":"Longevity & Accountability"},
+{"n":94,"q":"How do we know SWAFAA won't become just like the current union?","a":"That's the best question. We've built in strong protections from the start: term limits, regular membership votes on major issues, financial transparency reports, recall processes, and checks and balances so no small group can take control. I won't stay in a day-to-day president's role forever — I plan to step back and serve as the Guardian, the ultimate oversight voice watching for any signs of decay, rot, dishonesty, or the problems that happened before. SWAFAA is structurally different because the membership has the real power.","cat":"Longevity & Accountability"},
+{"n":95,"q":"What if leadership starts making bad decisions?","a":"Membership votes and recall options kick in. We have checks and balances written into the structure. No one person or small group gets unchecked power. You'll see regular reports and opportunities to vote. The Guardian role will help catch issues early.","cat":"Longevity & Accountability"},
+{"n":96,"q":"Will there be the same problems with finances or transparency?","a":"No, not if we do what we're promising now. Full public reports, member oversight, independent reviews, and clear bylaws. I'm personally committed to this, and after I step back from daily leadership, the Guardian oversight will help keep everyone honest. We're proving it with how we operate today — volunteer and transparent.","cat":"Longevity & Accountability"},
+{"n":97,"q":"What if SWAFAA gets corrupted over time?","a":"We have built-in protections against decay and rot: term limits, membership votes on everything important, financial audits, and a culture that encourages hard questions. As the Guardian, I'll stay involved to call out problems early. The ultimate power stays with the members, not any individual. That's how we stay different long-term.","cat":"Longevity & Accountability"},
+{"n":98,"q":"How do we make sure the membership really has the power?","a":"By putting major decisions — dues, contracts, bylaws changes — to membership votes. Elected board with real accountability. No rubber-stamp system. We're designing it so Flight Attendants control their union, not the other way around.","cat":"Longevity & Accountability"},
+{"n":99,"q":"What if I disagree with the direction SWAFAA takes?","a":"That's okay. You can speak up, vote, run for positions, or even push for changes. Dissent is healthy. The structure protects minority voices while moving forward with majority decisions. No one gets silenced.","cat":"Longevity & Accountability"},
+{"n":100,"q":"Why should I trust that this time will be different?","a":"Because we're building it differently from the ground up—with checks and balances, transparency, membership votes on the things that matter most, and term limits. I've also made a commitment that if the membership chooses, I'll step back from the President's role and continue serving as the Guardian, helping protect the vision and values this organization was built on. I've put in the volunteer work with no personal gain because I believe Flight Attendants deserve something better. Don't just take my word for it — watch what we do. Hold us accountable. Ask the hard questions, and help shape it. This organization belongs to the Flight Attendants — not to me.","cat":"Longevity & Accountability"}
+];
+
+const CATS = ["All", ...Array.from(new Set(QA.map(x => x.cat)))];
+const tabsEl = document.getElementById('faqTabs');
+const listEl = document.getElementById('faqList');
+const countEl = document.getElementById('faqCount');
+const searchEl = document.getElementById('faqSearch');
+let activeCat = "All";
+let query = "";
+
+function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+function highlight(text, q){
+  if(!q) return text;
+  const re = new RegExp('(' + escapeRegExp(q) + ')', 'ig');
+  return text.replace(re, '<mark>$1</mark>');
+}
+
+function renderTabs(){
+  tabsEl.innerHTML = CATS.map(c => `<button class="faq-tab ${c===activeCat ? 'active':''}" data-cat="${c}" type="button">${c}</button>`).join('');
+  tabsEl.querySelectorAll('.faq-tab').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      activeCat = btn.dataset.cat;
+      renderTabs();
+      renderList();
+    });
+  });
+}
+
+function renderList(){
+  const q = query.trim().toLowerCase();
+  const filtered = QA.filter(item=>{
+    const matchesCat = activeCat === "All" || item.cat === activeCat;
+    const matchesQuery = !q || item.q.toLowerCase().includes(q) || item.a.toLowerCase().includes(q);
+    return matchesCat && matchesQuery;
+  });
+  countEl.textContent = filtered.length + (filtered.length===1 ? ' question' : ' questions') + ' of 100';
+  if(filtered.length === 0){
+    listEl.innerHTML = '<div class="faq-empty">No questions match that search. Try a different word, or clear the filter.</div>';
+    return;
+  }
+  listEl.innerHTML = filtered.map(item => `
+    <div class="faq-item" data-n="${item.n}">
+      <button class="faq-q" aria-expanded="false">
+        <span class="faq-q-text"><span class="qn">Q${item.n}</span>${highlight(item.q, query.trim())}</span>
+        <span class="plus">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">${highlight(item.a, query.trim())}</div></div>
+    </div>
+  `).join('');
+  listEl.querySelectorAll('.faq-item').forEach(itemEl=>{
+    const btn = itemEl.querySelector('.faq-q');
+    const answer = itemEl.querySelector('.faq-a');
+    btn.addEventListener('click', ()=>{
+      const isOpen = itemEl.classList.contains('open');
+      if(isOpen){
+        itemEl.classList.remove('open');
+        answer.style.maxHeight = null;
+        btn.setAttribute('aria-expanded','false');
+      } else {
+        itemEl.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+}
+
+searchEl.addEventListener('input', (e)=>{
+  query = e.target.value;
+  renderList();
+});
+
+document.getElementById('expandAll').addEventListener('click', ()=>{
+  listEl.querySelectorAll('.faq-item').forEach(itemEl=>{
+    itemEl.classList.add('open');
+    const answer = itemEl.querySelector('.faq-a');
+    const btn = itemEl.querySelector('.faq-q');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+    btn.setAttribute('aria-expanded','true');
+  });
+});
+document.getElementById('collapseAll').addEventListener('click', ()=>{
+  listEl.querySelectorAll('.faq-item').forEach(itemEl=>{
+    itemEl.classList.remove('open');
+    const answer = itemEl.querySelector('.faq-a');
+    const btn = itemEl.querySelector('.faq-q');
+    answer.style.maxHeight = null;
+    btn.setAttribute('aria-expanded','false');
+  });
+});
+
+renderTabs();
+renderList();
+
+if(window.QRCode){
+  new QRCode(document.getElementById("qrcode"), {
+    text: "https://qrto.to/9f8ea840",
+    width: 84,
+    height: 84,
+    colorDark: "#0A0A0A",
+    colorLight: "#FFFFFF",
+    correctLevel: QRCode.CorrectLevel.M
+  });
+}
+</script>
+</body>
+</html>
