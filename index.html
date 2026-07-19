@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SWAFAA — Southwest Airlines Flight Attendant Association</title>
+<meta name="description" content="SWAFAA is a grassroots movement built by and for Southwest Airlines Flight Attendants. Sign the card. Get to a vote. Together we are one.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Jost:wght@200;300;400;500;600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root{
+    --black:#0A0A0A;
+    --off-black:#141414;
+    --white:#FFFFFF;
+    --off-white:#F4F4F3;
+    --panel:#EDEDEC;
+    --line-dark:rgba(255,255,255,0.14);
+    --line-light:rgba(10,10,10,0.14);
+    --gray:#6B6B6B;
+    --gray-light:#A8A8A8;
+    --display:'Archivo Black', sans-serif;
+    --logotype:'Jost', sans-serif;
+    --body:'Inter', sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+    --maxw:1180px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--body);
+    background:var(--white);
+    color:var(--black);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+  h1,h2,h3{
+    font-family:var(--display);
+    font-weight:400;
+    text-transform:uppercase;
+    line-height:0.98;
+    letter-spacing:0.005em;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px;height:1px;
+    background:currentColor;
+    display:inline-block;
+  }
+  .wordmark{
+    font-family:var(--logotype);
+    font-weight:300;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+  }
+  header{
+    position:sticky;top:0;z-index:100;
+    background:var(--black);
+    border-bottom:1px solid var(--line-dark);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 32px;
+    max-width:var(--maxw);margin:0 auto;
+  }
+  .nav-logo{
+    display:flex;align-items:center;gap:12px;
+    color:var(--white);
+    font-size:19px;
+  }
+  .nav-logo-img{height:26px;width:auto;display:block;}
+  .nav-links{display:none;gap:36px;align-items:center;}
+  @media(min-width:900px){.nav-links{display:flex;}}
+  .nav-links a{
+    font-size:13px;font-weight:600;color:var(--gray-light);
+    letter-spacing:0.03em;
+    transition:color .15s ease;
+  }
+  .nav-links a:hover{color:var(--white);}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:13px 24px;
+    font-family:var(--mono);
+    font-size:12.5px;font-weight:600;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    border-radius:2px;
+    transition:transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+    border:1.5px solid transparent;
+    white-space:nowrap;
+  }
+  .btn-solid-light{background:var(--white);color:var(--black);}
+  .btn-solid-light:hover{transform:translateY(-2px);}
+  .btn-outline-light{border-color:rgba(255,255,255,0.4);color:var(--white);}
+  .btn-outline-light:hover{border-color:var(--white);}
+  .hero{
+    background:var(--black);color:var(--white);
+    padding:100px 0 90px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-plane{
+    position:absolute;
+    right:-8%;top:50%;
+    transform:translateY(-50%);
+    width:640px;max-width:none;
+    opacity:0.06;
+    pointer-events:none;
+  }
+  .hero-inner{position:relative;max-width:760px;}
+  .hero .eyebrow{color:var(--gray-light);}
+  .hero h1{
+    font-size:clamp(38px, 6.2vw, 72px);
+    margin-bottom:26px;
+  }
+  .hero h1 .hollow{
+    -webkit-text-stroke:1.5px var(--white);
+    color:transparent;
+  }
+  .hero p.lede{
+    font-size:18px;color:var(--gray-light);
+    max-width:52ch;margin-bottom:36px;
+    font-weight:400;
+  }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:30px;}
+  .hero-tag{
+    font-family:var(--logotype);
+    font-size:13px;letter-spacing:0.28em;text-transform:uppercase;
+    color:var(--gray-light);
+  }
+  section{padding:100px 0;}
+  .section-head{max-width:680px;margin-bottom:56px;}
+  .section-head h2{font-size:clamp(30px,4vw,46px);}
+  .section-head p{color:var(--gray);font-size:16.5px;margin-top:16px;}
+  .mission{background:var(--white);}
+  .mission-grid{display:grid;grid-template-columns:1fr;gap:48px;}
+  @media(min-width:900px){.mission-grid{grid-template-columns:1.1fr 0.9fr;}}
+  .mission-text p{font-size:16.5px;color:#2A2A2A;margin-bottom:18px;max-width:56ch;}
+  .stat-block{border:1.5px solid var(--line-light);padding:0;}
+  .stat-row{display:flex;justify-content:space-between;align-items:baseline;padding:22px 24px;border-bottom:1.5px solid var(--line-light);}
+  .stat-row:last-child{border-bottom:none;}
+  .stat-num{font-family:var(--display);font-size:30px;}
+  .stat-label{font-family:var(--mono);font-size:11.5px;color:var(--gray);letter-spacing:0.05em;text-transform:uppercase;text-align:right;max-width:52%;}
+  .process{background:var(--panel);}
+  .steps{display:grid;grid-template-columns:1fr;gap:0;}
+  @media(min-width:860px){.steps{grid-template-columns:repeat(4,1fr);}}
+  .step{padding:28px 24px 28px 0;border-top:2px solid var(--black);}
+  @media(min-width:860px){.step{padding-right:26px;}.step:not(:last-child){border-right:1px dashed var(--line-light);}}
+  .step-num{font-family:var(--mono);font-weight:600;font-size:15px;letter-spacing:0.05em;color:var(--gray);margin-bottom:16px;}
+  .step h3{font-family:var(--body);font-weight:700;text-transform:none;letter-spacing:0;font-size:17px;margin-bottom:9px;}
+  .step p{font-size:14.5px;color:var(--gray);}
+  .cardsec{background:var(--black);color:var(--white);}
+  .cardsec-grid{display:grid;grid-template-columns:1fr;gap:52px;align-items:start;}
+  @media(min-width:960px){.cardsec-grid{grid-template-columns:0.95fr 1.05fr;}}
+  .cardsec h2{color:var(--white);}
+  .card-points li{display:flex;gap:12px;margin-bottom:14px;font-size:14.5px;color:#D0D0D0;}
+  .card-points li::before{content:"—";color:var(--white);flex-shrink:0;}
+  .card-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px;}
+  .authcard{background:var(--white);color:var(--black);border-radius:4px;overflow:hidden;box-shadow:0 40px 80px -20px rgba(0,0,0,0.6);}
+  .authcard-brand img{width:100%;height:auto;display:block;}
+  .btn-solid-dark{background:var(--black);color:var(--white);}
+  .btn-solid-dark:hover{transform:translateY(-2px);}
+  .btn-outline-dark{border-color:rgba(10,10,10,0.35);color:var(--black);}
+  .btn-outline-dark:hover{border-color:var(--black);}
+  .gov{background:var(--white);}
+  .gov-grid{display:grid;grid-template-columns:1fr;gap:52px;align-items:center;}
+  @media(min-width:960px){.gov-grid{grid-template-columns:1fr 1fr;}}
+  .gov-photo-wrap{position:relative;}
+  .gov-photo-wrap img{width:100%;height:auto;display:block;border-radius:6px;box-shadow:0 50px 90px -30px rgba(0,0,0,0.45);}
+  .gov-photo-badge{position:absolute;left:-18px;bottom:-18px;background:var(--black);color:var(--white);padding:16px 22px;border-radius:4px;box-shadow:0 20px 40px -12px rgba(0,0,0,0.5);}
+  @media(max-width:640px){.gov-photo-badge{left:14px;bottom:14px;}}
+  .gov-photo-badge .gb-num{font-family:var(--display);font-size:26px;line-height:1;}
+  .gov-photo-badge .gb-label{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-light);margin-top:6px;}
+  .gov-text p{color:#2A2A2A;font-size:16.5px;margin-bottom:18px;max-width:56ch;}
+  .gov-points{margin:24px 0 30px;}
+  .gov-points li{display:flex;gap:12px;margin-bottom:13px;font-size:14.5px;color:#2A2A2A;}
+  .gov-points li::before{content:"—";color:var(--black);flex-shrink:0;}
+  .gov-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
+  .gov-actions .filesize{font-family:var(--mono);font-size:11.5px;color:var(--gray);letter-spacing:0.03em;}
+  .last{background:var(--off-white);}
+  .last-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line-light);border:1px solid var(--line-light);}
+  @media(min-width:700px){.last-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(min-width:1050px){.last-grid{grid-template-columns:repeat(4,1fr);}}
+  .last-card{background:var(--off-white);padding:28px 24px;}
+  .last-card h3{font-family:var(--body);font-weight:700;text-transform:none;letter-spacing:0;font-size:16.5px;margin-bottom:10px;}
+  .last-card p{font-size:14px;color:var(--gray);}
+  .faq{background:var(--white);}
+  .faq-controls{margin-bottom:36px;}
+  .faq-search{width:100%;padding:16px 18px;border:1.5px solid var(--black);font-family:var(--mono);font-size:14px;background:var(--white);color:var(--black);margin-bottom:18px;}
+  .faq-search:focus{outline:none;}
+  .faq-tabs{display:flex;flex-wrap:wrap;gap:8px;}
+  .faq-tab{padding:9px 16px;font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;border:1.5px solid var(--line-light);color:var(--gray);border-radius:20px;transition:all .15s ease;}
+  .faq-tab:hover{border-color:var(--black);color:var(--black);}
+  .faq-tab.active{background:var(--black);color:var(--white);border-color:var(--black);}
+  .faq-count{font-family:var(--mono);font-size:12px;color:var(--gray);margin:22px 0 14px;}
+  .faq-list{border-top:1px solid var(--line-light);}
+  .faq-item{border-bottom:1px solid var(--line-light);}
+  .faq-q{width:100%;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 4px;font-size:16px;font-weight:600;}
+  .faq-q .qn{font-family:var(--mono);font-weight:600;color:var(--gray-light);font-size:13px;margin-right:14px;flex-shrink:0;}
+  .faq-q-text{flex:1;}
+  .faq-q .plus{font-family:var(--mono);font-size:18px;flex-shrink:0;transition:transform .2s ease;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .faq-a-inner{padding:0 4px 22px 51px;font-size:14.5px;color:var(--gray);max-width:70ch;}
+  footer{background:var(--black);color:var(--gray-light);}
+  .foot-top{padding:90px 0 60px;border-bottom:1px solid var(--line-dark);}
+  .foot-grid{display:grid;grid-template-columns:1fr;gap:48px;}
+  @media(min-width:900px){.foot-grid{grid-template-columns:1.2fr 1fr;}}
+  .foot-top h2{color:var(--white);font-size:clamp(28px,4vw,42px);margin-bottom:18px;}
+  .foot-top p{font-size:15.5px;max-width:48ch;margin-bottom:26px;}
+  .foot-contact{border:1px solid var(--line-dark);padding:24px;}
+  .foot-contact-row{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line-dark);font-size:14px;}
+  .foot-contact-row:last-child{border-bottom:none;}
+  .foot-contact-row span:first-child{font-family:var(--mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--gray-light);}
+  .foot-contact-row span:last-child{color:var(--white);text-align:right;}
+  .qr-wrap{display:flex;align-items:center;gap:18px;background:var(--white);padding:16px 18px;margin-top:20px;}
+  #qrcode{flex-shrink:0;}
+  .qr-text{color:var(--black);}
+  .qr-text .qt1{font-family:var(--display);font-size:15px;line-height:1.2;}
+  .qr-text .qt2{font-family:var(--mono);font-size:11px;color:var(--gray);margin-top:6px;}
+  .foot-bottom{padding:26px 0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12px;color:#6E6E6E;}
+  .foot-bottom .fw{font-family:var(--logotype);letter-spacing:0.2em;color:var(--gray-light);}
+</style>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a href="#top" class="nav-logo">
+      <img src="swafaa-logo.png" alt="SWAFAA — Together We Are One" class="nav-logo-img">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#process">The Process</a></li>
+      <li><a href="#card">The Card</a></li>
+      <li><a href="#constitution">Constitution</a></li>
+      <li><a href="#faq">100 Questions</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="SWAFAA_Authorization_Card.pdf" download class="btn btn-solid-light">Get the Card</a>
+  </nav>
+</header>
+<main id="top">
+  <section class="hero">
+    <svg class="hero-plane" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M30 4 L30 16 L54 26 L54 29 L30 23 L30 30 L36 34 L36 36 L30 35 L24 36 L24 34 L30 30 L30 23 L6 29 L6 26 L30 16 Z" stroke="white" stroke-width="0.6" fill="none" stroke-linejoin="round"/>
+    </svg>
+    <div class="wrap hero-inner">
+      <div class="eyebrow">Grassroots · Southwest Airlines Flight Attendants</div>
+      <h1>Built different.<br>We're not like<br>the rest. We're<br><span class="hollow">Swafaa.</span></h1>
+      <p class="lede">A movement built by working Flight Attendants who believe we deserve another option — one that's transparent, accountable, and 100% focused on Southwest Airlines Flight Attendants. Every dollar. Every decision. Every time.</p>
+      <div class="hero-actions">
+        <a href="#card" class="btn btn-solid-light">Get Your Card</a>
+        <a href="#faq" class="btn btn-outline-light">Read the 100 Toughest Questions</a>
+      </div>
+      <div class="hero-tag">Together We Are One</div>
+    </div>
+  </section>
+  <section class="mission" id="mission">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Mission &amp; Vision</div>
+        <h2>Choice, under the law</h2>
+      </div>
+      <div class="mission-grid">
+        <div class="mission-text">
+          <p>SWAFAA is a grassroots movement created by and for working Flight Attendants. We are not yet a certified union, but we are building something better — member-led, transparent, and focused on what you actually need.</p>
+          <p>This is about choice under the Railway Labor Act. The RLA gives every Flight Attendant the right to organize and choose their own representative. The National Mediation Board runs fair elections. Authorization cards are just what gets us to a vote — they are not the vote itself. And changing representatives never cancels your existing contract.</p>
+          <p>This isn't about hating any other union or the people in it. It's about believing Flight Attendants deserve another option — and that the choice should be yours.</p>
+        </div>
+        <div class="stat-block">
+          <div class="stat-row"><span class="stat-num">100%</span><span class="stat-label">Volunteer built. No one draws a paycheck.</span></div>
+          <div class="stat-row"><span class="stat-num">$0</span><span class="stat-label">Paid to organizers or leadership, to date.</span></div>
+          <div class="stat-row"><span class="stat-num">&gt;50%</span><span class="stat-label">Cards needed to trigger an NMB election.</span></div>
+          <div class="stat-row"><span class="stat-num">1&nbsp;yr</span><span class="stat-label">How long a signed card stays valid.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="process" id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">How It Actually Works</div>
+        <h2>From card to contract</h2>
+        <p>This is a real, legal process run by a federal agency — not a company process, and not a popularity contest. Here's exactly what happens, in order.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01 / SIGN</div>
+          <h3>You sign the card</h3>
+          <p>You confidentially authorize SWAFAA to petition for a vote. It isn't a vote itself, isn't binding, and you can withdraw it any time before we file.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02 / BUILD</div>
+          <h3>We build a majority</h3>
+          <p>Cards from more than 50% of Southwest Flight Attendants are needed before anything gets filed. Every base, every domicile.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03 / FILE</div>
+          <h3>NMB verifies interest</h3>
+          <p>We file with the National Mediation Board. They independently verify the showing of interest — the company never sees who signed.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">04 / VOTE</div>
+          <h3>Secret ballot election</h3>
+          <p>The NMB runs a federally supervised secret ballot. Every Flight Attendant votes — for SWAFAA, for the current union, or for neither.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="cardsec" id="card">
+    <div class="wrap cardsec-grid">
+      <div>
+        <div class="eyebrow">Get Involved</div>
+        <h2>The card, explained</h2>
+        <p style="color:var(--gray-light);font-size:16.5px;margin-top:16px;margin-bottom:28px;max-width:48ch;">Signing costs you nothing and locks you into nothing. It just says: I want the opportunity to vote.</p>
+        <ul class="card-points">
+          <li>Not a vote — just a request for the chance to hold one</li>
+          <li>Confidential. The company never sees individual signatures</li>
+          <li>Reversible any time before we file with the NMB</li>
+          <li>Valid for one year from the date you sign</li>
+          <li>Only original handwritten signatures are valid</li>
+        </ul>
+        <div class="card-actions">
+          <a href="SWAFAA_Authorization_Card.pdf" download class="btn btn-solid-light">Download the Card</a>
+          <a href="SWAFAA_Flyer.pdf" download class="btn btn-outline-light">Download the Flyer</a>
+        </div>
+      </div>
+      <div class="authcard authcard-brand">
+        <img src="swafaa-flyer.png" alt="SWAFAA — Built different. We're not like the rest. We're SWAFAA." loading="lazy">
+      </div>
+    </div>
+  </section>
+  <section class="gov" id="constitution">
+    <div class="wrap gov-grid">
+      <div class="gov-photo-wrap">
+        <img src="swafaa-officer-photo.jpeg" alt="A Southwest Airlines Flight Attendant standing in front of the SWAFAA wordmark, representing the members SWAFAA's Constitution was built to protect." loading="lazy">
+        <div class="gov-photo-badge">
+          <div class="gb-num">45</div>
+          <div class="gb-label">Constitutional<br>Articles</div>
+        </div>
+      </div>
+      <div class="gov-text">
+        <div class="eyebrow">The Framework</div>
+        <h2>Constitution &amp; Bylaws</h2>
+        <p>This is the document that makes SWAFAA different — the founding rulebook that puts members, not leadership, in permanent control. It spells out how officers are elected, how they can be voted out, how every dollar is tracked, and why SWAFAA can never be quietly merged, sold, or absorbed into another union without members saying so first.</p>
+        <p>A built-in Guardian role keeps watch over finances and ethics long after the founding term ends — and that safeguard can never be stripped away, even by future leadership. Everything else stays exactly where it belongs: in members' hands.</p>
+        <ul class="gov-points">
+          <li>Member-driven governance — elections, referenda, and override power stay with you</li>
+          <li>Full financial transparency — quarterly reports and an independent annual audit</li>
+          <li>Permanent independence — no merger or affiliation without a member vote</li>
+          <li>Term limits, recall, and a locked-in anti-corruption Guardian role</li>
+        </ul>
+        <div class="gov-actions">
+          <a href="SWAFAA_Constitution_Bylaws.pdf" download class="btn btn-solid-dark">Download the Constitution &amp; Bylaws</a>
+          <span class="filesize">PDF · Full Constitution, Bylaws &amp; Appendices</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="last" id="last">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Built To Last</div>
+        <h2>How we stay different</h2>
+        <p>The honest question isn't "why should I trust you today." It's "what stops this from becoming exactly what it replaced." Here's the structure built to answer that.</p>
+      </div>
+      <div class="last-grid">
+        <div class="last-card">
+          <h3>Term limits</h3>
+          <p>Leadership doesn't get to stay indefinitely. Fresh perspectives and a real connection to the day-to-day job are written into the structure, not left to goodwill.</p>
+        </div>
+        <div class="last-card">
+          <h3>Recall &amp; elections</h3>
+          <p>Members can vote leadership out. The founding team builds the organization for a defined startup period — then leadership transitions to member elections.</p>
+        </div>
+        <div class="last-card">
+          <h3>Financial transparency</h3>
+          <p>Regular, plain-language reports on where every dollar comes from and where it goes. If it can't be explained clearly, it shouldn't be asked for.</p>
+        </div>
+        <div class="last-card">
+          <h3>The Guardian role</h3>
+          <p>Once the organization is stable, founding leadership steps back from day-to-day control into an oversight role — watching for the decay, rot, or dishonesty that started this movement in the first place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">No Dodging</div>
+        <h2>The 100 toughest questions</h2>
+        <p>Every hard question we've been asked in a terminal, a galley, or a DM — answered directly by SWAFAA's founder, Travis Rodriguez. Search below or filter by topic.</p>
+      </div>
+      <div class="faq-controls">
+        <input type="text" class="faq-search" id="faqSearch" placeholder="Search all 100 questions… e.g. &quot;dues&quot; or &quot;strike&quot;" aria-label="Search questions">
+        <div class="faq-tabs" id="faqTabs"></div>
+      </div>
+      <div class="faq-count" id="faqCount"></div>
+      <div class="faq-list" id="faqList"></div>
+    </div>
+  </section>
+</main>
+<footer id="contact">
+  <div class="wrap foot-top">
+    <div class="foot-grid">
+      <div>
+        <h2>Our strength.<br>Our voice.<br>Our future.</h2>
+        <p>SWAFAA is organized by working Southwest Airlines Flight Attendants. Not affiliated with Southwest Airlines management or any existing union. Every card is handled confidentially, in line with National Mediation Board rules.</p>
+        <div class="card-actions">
+          <a href="SWAFAA_Authorization_Card.pdf" download class="btn btn-solid-light">Download the Card</a>
+          <a href="mailto:swafaa@mail.com" class="btn btn-outline-light">Email Organizers</a>
+        </div>
+      </div>
+      <div>
+        <div class="foot-contact">
+          <div class="foot-contact-row"><span>Website</span><span>swafaa.com</span></div>
+          <div class="foot-contact-row"><span>Email</span><span>swafaa@mail.com</span></div>
+          <div class="foot-contact-row"><span>Mail</span><span>SWAFAA Organizing Group<br>PO Box 25, Fulshear, TX 77441</span></div>
+          <div class="foot-contact-row"><span>Status</span><span>Grassroots — not yet certified</span></div>
+        </div>
+        <div class="qr-wrap">
+          <div id="qrcode"></div>
+          <div class="qr-text">
+            <div class="qt1">SCAN. SIGN.<br>SHARE.</div>
+            <div class="qt2">qrto.to/9f8ea840</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span class="fw">Swafaa</span>
+    <span>© 2026 SWAFAA Organizing Group. Built by Flight Attendants, for Flight Attendants.</span>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+const QA = [
+  {"n":1,"q":"Why are you doing this? What's wrong with TWU?","a":"Honestly, this isn't about hating TWU or hating people. It's about believing Flight Attendants deserve another option.","cat":"Trust & Why SWAFAA"},
+  {"n":2,"q":"Isn't this just about you wanting power?","a":"If I wanted power, this would probably be the dumbest way to get it. This has been hundreds of volunteer hours. Nobody has paid me a dime.","cat":"Trust & Why SWAFAA"},
+  {"n":3,"q":"How do we know you won't become just like TWU?","a":"You shouldn't just trust me because I'm Travis. You should hold me accountable. That's exactly why I've talked so much about transparency.","cat":"Trust & Why SWAFAA"},
+  {"n":4,"q":"Why should I sign an Authorization Card?","a":"Because it isn't a vote. The card simply says \"I want the opportunity to vote.\"","cat":"Trust & Why SWAFAA"},
+  {"n":5,"q":"Won't we lose our contract?","a":"No. Changing representatives doesn't make the contract disappear. The NMB has confirmed this.","cat":"Trust & Why SWAFAA"}
+];
+const CATS = ["All", ...Array.from(new Set(QA.map(x => x.cat)))];
+const tabsEl = document.getElementById('faqTabs');
+const listEl = document.getElementById('faqList');
+const countEl = document.getElementById('faqCount');
+const searchEl = document.getElementById('faqSearch');
+let activeCat = "All";
+let query = "";
+function renderTabs(){
+  tabsEl.innerHTML = CATS.map(c => `<button class="faq-tab ${c===activeCat ? 'active':''}" data-cat="${c}">${c}</button>`).join('');
+  tabsEl.querySelectorAll('.faq-tab').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      activeCat = btn.dataset.cat;
+      renderTabs();
+      renderList();
+    });
+  });
+}
+function renderList(){
+  const q = query.trim().toLowerCase();
+  const filtered = QA.filter(item=>{
+    const matchesCat = activeCat === "All" || item.cat === activeCat;
+    const matchesQuery = !q || item.q.toLowerCase().includes(q) || item.a.toLowerCase().includes(q);
+    return matchesCat && matchesQuery;
+  });
+  countEl.textContent = filtered.length + (filtered.length===1 ? ' question' : ' questions');
+  if(filtered.length === 0){
+    listEl.innerHTML = '<div class="faq-empty">No questions match that search.</div>';
+    return;
+  }
+  listEl.innerHTML = filtered.map(item => `
+    <div class="faq-item" data-n="${item.n}">
+      <button class="faq-q" aria-expanded="false">
+        <span class="faq-q-text"><span class="qn">Q${item.n}</span>${item.q}</span>
+        <span class="plus">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">${item.a}</div></div>
+    </div>
+  `).join('');
+  listEl.querySelectorAll('.faq-item').forEach(itemEl=>{
+    const btn = itemEl.querySelector('.faq-q');
+    const answer = itemEl.querySelector('.faq-a');
+    btn.addEventListener('click', ()=>{
+      const isOpen = itemEl.classList.contains('open');
+      if(isOpen){
+        itemEl.classList.remove('open');
+        answer.style.maxHeight = null;
+        btn.setAttribute('aria-expanded','false');
+      } else {
+        itemEl.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+}
+searchEl.addEventListener('input', (e)=>{
+  query = e.target.value;
+  renderList();
+});
+renderTabs();
+renderList();
+if(window.QRCode){
+  new QRCode(document.getElementById("qrcode"), {
+    text: "https://qrto.to/9f8ea840",
+    width: 84,
+    height: 84,
+    colorDark: "#0A0A0A",
+    colorLight: "#FFFFFF",
+    correctLevel: QRCode.CorrectLevel.M
+  });
+}
+</script>
+</body>
+</html>
