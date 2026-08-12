@@ -7090,6 +7090,60 @@ button,
   }
 }
 
+
+/* ==========================================================
+   V11 — ACTUAL MOBILE AUTHORIZATION TAB FIX
+   The screenshot is the #tab-card-info panel inside #information,
+   not the main #card section. This targets that exact element.
+   ========================================================== */
+
+@media (max-width: 768px) {
+  #information #tab-card-info {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+
+  #information #tab-card-info h3 {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+
+    /* Small enough that the COMPLETE word AUTHORIZATION fits. */
+    font-size: clamp(30px, 8vw, 48px) !important;
+    line-height: .88 !important;
+    letter-spacing: -.045em !important;
+
+    white-space: normal !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    hyphens: none !important;
+    text-wrap: balance !important;
+  }
+
+  #information #tab-card-info > p {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #information #tab-card-info h3 {
+    font-size: 32px !important;
+    line-height: .9 !important;
+    letter-spacing: -.04em !important;
+  }
+}
+
+@media (max-width: 360px) {
+  #information #tab-card-info h3 {
+    font-size: 29px !important;
+  }
+}
+
 </style>
 
 </body>
