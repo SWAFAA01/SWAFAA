@@ -2301,6 +2301,149 @@ body {
   min-width: 0;
 }
 
+
+/* ===== CONTACT & GET INVOLVED ===== */
+#contact {
+  background: #050505;
+  color: #fff;
+  padding: 120px 0 100px;
+  border-top: 1px solid rgba(255,255,255,.10);
+  scroll-margin-top: 125px;
+}
+.contact-header {
+  max-width: 900px;
+  margin: 0 auto 55px;
+}
+.contact-kicker {
+  color: rgba(255,255,255,.42);
+  font: 800 9px/1 Inter, sans-serif;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.contact-header h2 {
+  color: #F7F7F5;
+  font-size: clamp(44px, 7vw, 92px);
+  line-height: .92;
+  letter-spacing: -.045em;
+  text-transform: uppercase;
+  margin: 0 0 22px;
+}
+.contact-header h2::after {
+  content: "";
+  display: block;
+  width: 58px;
+  height: 2px;
+  margin-top: 18px;
+  background: #8A4315;
+}
+.contact-header p {
+  max-width: 760px;
+  color: rgba(255,255,255,.70);
+  font-size: 17px;
+  line-height: 1.8;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 0;
+  border-top: 1px solid rgba(255,255,255,.13);
+  border-bottom: 1px solid rgba(255,255,255,.13);
+}
+.contact-card {
+  padding: 34px 30px 38px;
+  border-right: 1px solid rgba(255,255,255,.10);
+  min-height: 270px;
+}
+.contact-card:last-child { border-right: 0; }
+.contact-card h3 {
+  color: #F7F7F5;
+  font-size: 20px;
+  letter-spacing: .02em;
+  margin: 0 0 14px;
+}
+.contact-card p {
+  color: rgba(255,255,255,.62);
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 0 0 18px;
+}
+.contact-email {
+  display: inline-block;
+  color: #fff;
+  font-size: clamp(17px, 2vw, 22px);
+  font-weight: 700;
+  word-break: break-word;
+  margin-bottom: 18px;
+}
+.contact-email:hover { color: #8A4315; }
+.contact-address strong { color: #fff; }
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 13px 18px;
+  border: 1px solid rgba(255,255,255,.34);
+  background: #fff;
+  color: #050505;
+  font: 800 10px/1 Inter, sans-serif;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  transition: .25s ease;
+}
+.contact-btn:hover {
+  background: #8A4315;
+  color: #fff;
+  border-color: #8A4315;
+  transform: translateY(-2px);
+}
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.contact-actions .contact-btn.secondary {
+  background: transparent;
+  color: #fff;
+}
+.contact-actions .contact-btn.secondary:hover {
+  background: #8A4315;
+  border-color: #8A4315;
+}
+.contact-closing {
+  margin-top: 48px;
+  padding: 34px 0 0;
+  border-top: 1px solid rgba(255,255,255,.10);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+.contact-closing-title {
+  color: #fff;
+  font-family: 'Archivo Black', sans-serif;
+  text-transform: uppercase;
+  font-size: clamp(24px, 4vw, 42px);
+  line-height: 1;
+}
+.contact-closing-sub {
+  color: rgba(255,255,255,.55);
+  margin-top: 10px;
+  font-size: 14px;
+}
+@media (max-width: 800px) {
+  #contact { padding: 85px 0 75px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-card {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255,255,255,.10);
+  }
+  .contact-card:last-child { border-bottom: 0; }
+  .contact-closing { align-items: flex-start; }
+}
+
 </style>
 </head>
 <body>
@@ -2316,6 +2459,7 @@ body {
       <a href="#mission">MISSION</a>
       <a href="#card">AUTHORIZATION CARD</a>
       <a href="#donate">DONATE</a>
+      <a href="#contact">CONTACT / GET INVOLVED</a>
     </div>
   
 <button class="swaafa-sound-control" id="swaafaSound" type="button" aria-label="Turn SWAFAA music on or off">
@@ -2953,9 +3097,68 @@ body {
 </section>
 
 <!-- FOOTER -->
+
+<section id="contact" aria-labelledby="contact-title">
+  <div class="wrap">
+    <div class="contact-header">
+      <div class="contact-kicker">SWAFAA ORGANIZING GROUP</div>
+      <h2 id="contact-title">CONTACT &amp; GET INVOLVED</h2>
+      <p>
+        Whether you want to learn more about SWAFAA, get involved in organizing,
+        download and sign an authorization card, support the movement, or simply
+        ask a question — we want to hear from you.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>CONTACT SWAFAA</h3>
+        <p>Have a question or want to connect with the organizing group?</p>
+        <a class="contact-email" href="mailto:SWAFAA@MAIL.COM">SWAFAA@MAIL.COM</a><br>
+        <a class="contact-btn" href="mailto:SWAFAA@MAIL.COM">EMAIL SWAFAA</a>
+      </div>
+
+      <div class="contact-card">
+        <h3>SEND US MAIL</h3>
+        <p class="contact-address">
+          <strong>SWAFAA Organizing Group</strong><br>
+          PO Box 25<br>
+          Fulshear, TX 77441
+        </p>
+      </div>
+
+      <div class="contact-card">
+        <h3>GET INVOLVED</h3>
+        <p>
+          Download and sign your authorization card, help spread the word,
+          and support SWAFAA as we build together.
+        </p>
+        <div class="contact-actions">
+          <a class="contact-btn" href="#card">GET YOUR AUTHORIZATION CARD</a>
+          <a class="contact-btn secondary" href="#donate">SUPPORT SWAFAA</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-closing">
+      <div>
+        <div class="contact-closing-title">TOGETHER. WE ARE ONE.</div>
+        <div class="contact-closing-sub">Have a question? Want to get involved?</div>
+      </div>
+      <a class="contact-btn" href="mailto:SWAFAA@MAIL.COM">EMAIL SWAFAA</a>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
-    <p>&copy; 2026 SWAFAA Organizing Group. Together. We. Are. One.</p>
+    <p>
+      <a href="#contact" style="font-weight:700; color:#0A0A0A;">CONTACT &amp; GET INVOLVED</a>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <a href="mailto:SWAFAA@MAIL.COM" style="font-weight:700; color:#0A0A0A;">SWAFAA@MAIL.COM</a>
+      <br><br>
+      &copy; 2026 SWAFAA Organizing Group. Together. We. Are. One.
+    </p>
   </div>
 </footer>
 
