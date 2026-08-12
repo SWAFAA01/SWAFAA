@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SWAFAA — Southwest Airlines Flight Attendant Association</title>
+<meta name="description" content="SWAFAA is a grassroots movement built by and for Southwest Airlines Flight Attendants. Sign the card. Get to a vote. Together we are one.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black:wght@400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0A0A0A;
+  --white: #FFFFFF;
+  --red: #E63946;
+  --dark-red: #D62828;
+  --gray-light: #A8A8A8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg, video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+h1, h2, h3 {
+  font-family: 'Archivo Black', sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+/* HEADER & NAV */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(230, 57, 70, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.nav-logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  color: var(--white);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.nav-logo:hover {
+  opacity: 0.85;
+  transform: scale(1.02);
+}
+
+.nav-links {
+  display: none;
+  gap: 8px;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+  list-style: none;
+}
+
+@media (min-width: 1024px) {
+  .nav-links {
+    display: flex;
+  }
+}
+
+.nav-links a {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray-light);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav-links a:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.nav-links a.nav-donate {
+  background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%);
+  color: var(--white);
+  margin-left: 12px;
+  padding: 12px 18px;
+  font-size: 11px;
+  box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+}
+
+.nav-links a.nav-donate:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(230, 57, 70, 0.5);
+}
+
+.nav-cta {
+  display: none;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .nav-cta {
+    display: flex;
+  }
+}
+
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .menu-toggle {
+    display: none;
+  }
+}
+
+.hamburger {
+  width: 20px;
+  height: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 2px;
+  background: var(--white);
+  border-radius: 1px;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 10, 0.98);
+  backdrop-filter: blur(15px);
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 40px;
+  overflow-y: auto;
+  z-index: 999;
+}
+
+.mobile-menu.active {
+  display: flex;
+}
+
+.mobile-menu a {
+  color: var(--gray-light);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 14px 18px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu a:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(6px);
+}
+
+.mobile-menu a.nav-donate {
+  background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%);
+  color: var(--white);
+  margin-top: 12px;
+}
+
+/* BUTTONS */
+.btn {
+  padding: 14px 32px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-solid-light {
+  background: var(--white);
+  color: var(--black);
+}
+
+.btn-solid-light:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline-light {
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  color: var(--white);
+}
+
+.btn-outline-light:hover {
+  border-color: var(--white);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-3px);
+}
+
+/* HERO */
+.hero {
+  background: var(--black);
+  color: var(--white);
+  padding: 120px 0 100px;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 800px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 6vw, 72px);
+  margin-bottom: 30px;
+  line-height: 1.1;
+  animation: slideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hero p {
+  font-size: 18px;
+  color: var(--gray-light);
+  margin-bottom: 40px;
+  max-width: 600px;
+  animation: slideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s backwards;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  animation: slideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s backwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* WHY SWAFAA SECTION */
+.why-section {
+  background: var(--black);
+  color: var(--white);
+  padding: 100px 0;
+}
+
+.why-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.why-content h2 {
+  font-size: clamp(32px, 5vw, 48px);
+  margin-bottom: 40px;
+}
+
+.why-text {
+  display: grid;
+  gap: 40px;
+}
+
+.why-text h3 {
+  color: var(--white);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.why-text p {
+  font-size: 17px;
+  color: #e0e0e0;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.why-text strong {
+  color: var(--red);
+  font-weight: 700;
+}
+
+.why-closing {
+  margin-top: 50px;
+  padding-top: 40px;
+  border-top: 2px solid var(--red);
+  text-align: center;
+}
+
+.why-closing p {
+  font-size: 20px;
+  color: var(--white);
+  font-weight: 600;
+  margin: 0;
+}
+
+/* VIDEO SECTION */
+.video-section {
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(20, 20, 20, 0.9) 100%);
+  backdrop-filter: blur(15px);
+  padding: 120px 0;
+  position: relative;
+}
+
+.video-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(230, 57, 70, 0.2), transparent);
+}
+
+.video-container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.video-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.video-header h2 {
+  font-size: clamp(32px, 5vw, 48px);
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.video-description {
+  background: rgba(230, 57, 70, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(230, 57, 70, 0.15);
+  border-radius: 12px;
+  padding: 40px;
+  margin-bottom: 60px;
+  color: var(--white);
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.video-description strong {
+  color: var(--red);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.video-description p {
+  margin-bottom: 16px;
+}
+
+.video-description p:last-child {
+  margin-bottom: 0;
+  margin-top: 24px;
+  text-align: center;
+  color: var(--red);
+  font-weight: 700;
+}
+
+.video-player-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(230, 57, 70, 0.2);
+  animation: videoSlideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes videoSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.video-player {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  background: var(--black);
+}
+
+.video-poster {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+}
+
+.video-element {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 3;
+}
+
+.video-player.playing .video-poster {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.video-player.playing .video-element {
+  opacity: 1;
+}
+
+.play-button-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, rgba(230, 57, 70, 0.9) 0%, rgba(214, 40, 40, 0.9) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 20px 50px rgba(230, 57, 70, 0.5);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.play-button-overlay:hover {
+  transform: translate(-50%, -50%) scale(1.15);
+  box-shadow: 0 30px 70px rgba(230, 57, 70, 0.7);
+}
+
+.play-button-overlay::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 40px solid var(--white);
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
+  margin-left: 8px;
+}
+
+.video-player.playing .play-button-overlay {
+  display: none;
+}
+
+/* START BUTTON */
+.start-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 500;
+  background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%);
+  color: var(--white);
+  border: none;
+  padding: 16px 28px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(230, 57, 70, 0.4);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.start-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 35px rgba(230, 57, 70, 0.6);
+}
+
+.start-btn.hidden {
+  display: none;
+}
+
+/* MISSION SECTION */
+.mission {
+  background: var(--white);
+  padding: 100px 0;
+}
+
+.mission h2 {
+  font-size: clamp(30px, 4vw, 46px);
+  margin-bottom: 40px;
+}
+
+.mission p {
+  font-size: 16.5px;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+
+/* CARD SECTION */
+.card-section {
+  background: var(--black);
+  color: var(--white);
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-section h2 {
+  font-size: clamp(30px, 4vw, 46px);
+  color: var(--white);
+  margin-bottom: 40px;
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.card-actions .btn {
+  background: linear-gradient(135deg, rgba(230, 57, 70, 0.25) 0%, rgba(230, 57, 70, 0.12) 100%);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(230, 57, 70, 0.4);
+  color: var(--white);
+}
+
+.card-actions .btn:hover {
+  background: linear-gradient(135deg, rgba(230, 57, 70, 0.4) 0%, rgba(230, 57, 70, 0.25) 100%);
+  border-color: rgba(230, 57, 70, 0.7);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(230, 57, 70, 0.35);
+}
+
+/* DONATION SECTION */
+.donate-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  padding: 120px 0;
+}
+
+.donate-section h2 {
+  color: var(--white);
+  font-size: clamp(30px, 4vw, 48px);
+  margin-bottom: 30px;
+}
+
+.donate-section p {
+  color: #e0e0e0;
+  font-size: 16.5px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.btn-donate {
+  background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%);
+  color: var(--white);
+  padding: 18px 48px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(230, 57, 70, 0.3);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.btn-donate:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(230, 57, 70, 0.5);
+  background: linear-gradient(135deg, var(--dark-red) 0%, #A4161A 100%);
+}
+
+/* FOOTER */
+footer {
+  background: var(--white);
+  padding: 60px 0;
+  text-align: center;
+  border-top: 1px solid #eee;
+}
+
+footer p {
+  color: #666;
+  font-size: 14px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .wrap {
+    padding: 0 20px;
+  }
+  
+  .nav {
+    padding: 0 20px;
+  }
+  
+  .hero {
+    padding: 80px 0 60px;
+  }
+  
+  .why-section, .video-section, .card-section, .donate-section {
+    padding: 80px 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <nav class="nav">
+    <div class="nav-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">SWAFAA</div>
+    <ul class="nav-links">
+      <li><a href="#why">Why SWAFAA</a></li>
+      <li><a href="#video">Video</a></li>
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#card">Card</a></li>
+      <li><a href="#donate" class="nav-donate">Donate</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="SWAFAA_Authorization_Card.pdf" download class="btn btn-solid-light">Get the Card</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle">
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#why">Why SWAFAA</a>
+    <a href="#video">Video</a>
+    <a href="#mission">Mission</a>
+    <a href="#card">Card</a>
+    <a href="#donate" class="nav-donate">Donate</a>
+    <a href="SWAFAA_Authorization_Card.pdf" download class="btn btn-solid-light">Get the Card</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-content">
+      <h1>BUILT DIFFERENT.<br>WE'RE NOT LIKE THE REST.<br>WE'RE SWAFAA.</h1>
+      <p>A movement built by working Flight Attendants who believe we deserve another option — one that's transparent, accountable, and 100% focused on Southwest Airlines Flight Attendants.</p>
+      <div class="hero-actions">
+        <a href="#card" class="btn btn-solid-light">Get Your Card</a>
+        <a href="#video" class="btn btn-outline-light">Watch Teaser</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY SWAFAA -->
+<section class="why-section" id="why">
+  <div class="wrap">
+    <div class="why-content fade-in">
+      <h2>Why SWAFAA?</h2>
+      <div class="why-text">
+        <div>
+          <h3>Because Flight Attendants Deserve a Choice</h3>
+          <p>SWAFAA was created because we believe Flight Attendants deserve something better: an organization built for the members, by the members, and accountable to the people it serves.</p>
+        </div>
+        <div>
+          <h3>This is About You</h3>
+          <p>SWAFAA isn't about one person telling everyone else what to do. It's about creating an opportunity for Flight Attendants to learn, ask questions, consider their options, and ultimately decide for themselves what kind of representation they want.</p>
+          <p><strong>You deserve to have a choice.</strong></p>
+        </div>
+        <div>
+          <h3>You Get to Decide</h3>
+          <p>Whether you ultimately support SWAFAA, support the current system, or simply want to learn more before making up your mind—that's your choice.</p>
+          <p>We're asking you to be informed. We're asking you to look at what's possible and decide for yourself whether this is something you want to support.</p>
+        </div>
+        <div class="why-closing">
+          <p><strong>This is about making sure you have a choice.</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO SECTION -->
+<section class="video-section" id="video">
+  <div class="wrap">
+    <div class="video-container fade-in">
+      <div class="video-header">
+        <h2>Are You Ready?</h2>
+      </div>
+      <div class="video-description">
+        <p><strong>Something BIG is here.</strong></p>
+        <p>SWAFAA is taking shape—and this is only the beginning. What we're building isn't about one person. It's about Flight Attendants coming together, having a voice, and having a choice.</p>
+        <p><strong>Watch the teaser. Then stay tuned.</strong></p>
+        <p>The next chapter is just beginning.</p>
+        <p>-SWAFAA-</p>
+      </div>
+      <div class="video-player-wrapper">
+        <div class="video-player" id="videoPlayer">
+          <img class="video-poster" id="videoPoster" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAC0ALwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ybnJ2eoqOkpaanqKmqsrO0tba2uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJmaoqOkpaanqKmqsrO0tba2uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/9k=" alt="SWAFAA Video">
+          <video class="video-element" id="teaserVideo" preload="metadata">
+            <source src="swafaa-teaser.mp4" type="video/mp4">
+          </video>
+          <div class="play-button-overlay" id="playBtn"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission" id="mission">
+  <div class="wrap fade-in">
+    <h2>Our Mission</h2>
+    <p>SWAFAA is a grassroots movement created by and for working Flight Attendants. We are building member-led, transparent, and focused on what you actually need.</p>
+    <p>This is about choice under the Railway Labor Act. Flight Attendants have the right to organize and choose their own representative. The National Mediation Board runs fair elections. Authorization cards are just what gets us to a vote — they are not the vote itself.</p>
+  </div>
+</section>
+
+<!-- CARD SECTION -->
+<section class="card-section" id="card">
+  <div class="wrap fade-in">
+    <h2>The Authorization Card</h2>
+    <p>The card is simple. By signing, you're requesting the opportunity to vote. That's it. One signature. One choice. No obligations. No changes to your contract.</p>
+    <div class="card-actions">
+      <a href="SWAFAA_Authorization_Card.pdf" download class="btn btn-solid-light">Download the Card</a>
+      <a href="SWAFAA_Flyer.pdf" download class="btn btn-solid-light">Download the Flyer</a>
+      <a href="SWAFAA_Constitution_Bylaws.pdf" download class="btn btn-solid-light">Download Constitution</a>
+    </div>
+  </div>
+</section>
+
+<!-- DONATION -->
+<section class="donate-section" id="donate">
+  <div class="wrap fade-in">
+    <h2>Support SWAFAA</h2>
+    <p>SWAFAA is built by Flight Attendants, for Flight Attendants. Your support helps us build the legal, financial, and organizational foundation needed to keep moving forward.</p>
+    <p>Whether you give $5, $25, $100, or simply share SWAFAA with another Flight Attendant—you're helping build something bigger than any one person.</p>
+    <a href="https://www.zeffy.com/en-US/donation-form/support-swafaa-building-a-stronger-foundation" target="_blank" class="btn-donate">Support SWAFAA</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <p>&copy; 2026 SWAFAA Organizing Group. Together. We. Are. One.</p>
+  </div>
+</footer>
+
+<audio id="bgMusic" preload="auto">
+  <source src="swafaa-theme.mp3" type="audio/mpeg">
+</audio>
+
+<button class="start-btn" id="startBtn">▶ Start Experience</button>
+
+<script>
+// Simple Music Control
+const bgMusic = document.getElementById('bgMusic');
+const startBtn = document.getElementById('startBtn');
+let musicStarted = false;
+
+// Start button clicks
+startBtn.addEventListener('click', () => {
+  bgMusic.volume = 0.4;
+  bgMusic.currentTime = 0;
+  bgMusic.play();
+  startBtn.classList.add('hidden');
+  musicStarted = true;
+});
+
+// Video Player - Simple
+const videoPlayer = document.getElementById('videoPlayer');
+const playBtn = document.getElementById('playBtn');
+const teaserVideo = document.getElementById('teaserVideo');
+
+if (playBtn && teaserVideo) {
+  playBtn.addEventListener('click', () => {
+    bgMusic.pause();
+    videoPlayer.classList.add('playing');
+    teaserVideo.play();
+  });
+
+  teaserVideo.addEventListener('ended', () => {
+    videoPlayer.classList.remove('playing');
+    bgMusic.play();
+  });
+}
+
+// Mobile Menu
+const menuToggle = document.getElementById('menuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+
+if (menuToggle) {
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+  });
+}
+
+// Smooth Scroll
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    const href = link.getAttribute('href');
+    if (href !== '#' && document.querySelector(href)) {
+      e.preventDefault();
+      document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+
+// Fade-in animations
+const fadeElements = document.querySelectorAll('.fade-in');
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animation = 'fadeIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
+      entry.target.style.opacity = '1';
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+fadeElements.forEach(el => {
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
