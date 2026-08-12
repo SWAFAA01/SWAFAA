@@ -6119,7 +6119,7 @@ img, video, iframe {
     </div>
 
     <div class="tab-panel" id="tab-card-info">
-      <h3>The Authorization Card</h3>
+      <h3 class="authorization-tab-title"><span class="auth-title-the">The</span> <span class="auth-title-word">Authorization</span> <span class="auth-title-card">Card</span></h3>
       <p>The authorization card is an important first step in demonstrating support for moving toward an election. It is not the final secret-ballot vote.</p>
       <div class="info-grid">
         <div class="info-card"><h4>Download</h4><p>Get the official SWAFAA Authorization Card and review it before signing.</p></div>
@@ -7144,6 +7144,71 @@ button,
   }
 }
 
+
+/* ==========================================================
+   V12 — HARD MOBILE TYPE LOCK FOR AUTHORIZATION TAB
+   The title is explicitly composed as three words so the long
+   word AUTHORIZATION can never be broken by the browser.
+   ========================================================== */
+.authorization-tab-title .auth-title-the,
+.authorization-tab-title .auth-title-word,
+.authorization-tab-title .auth-title-card {
+  display: inline-block !important;
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+  hyphens: none !important;
+}
+
+@media (max-width: 768px) {
+  #information #tab-card-info .authorization-tab-title {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 28px !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    font-family: 'Archivo Black', sans-serif !important;
+    font-size: 0 !important;
+    line-height: .92 !important;
+    letter-spacing: 0 !important;
+    text-transform: uppercase !important;
+    white-space: normal !important;
+    overflow: visible !important;
+  }
+
+  #information #tab-card-info .authorization-tab-title .auth-title-the,
+  #information #tab-card-info .authorization-tab-title .auth-title-word,
+  #information #tab-card-info .authorization-tab-title .auth-title-card {
+    font-family: 'Archivo Black', sans-serif !important;
+    font-size: clamp(27px, 8vw, 40px) !important;
+    line-height: .9 !important;
+    letter-spacing: -.035em !important;
+    vertical-align: baseline !important;
+  }
+
+  #information #tab-card-info .authorization-tab-title .auth-title-the,
+  #information #tab-card-info .authorization-tab-title .auth-title-word {
+    margin-right: .22em !important;
+  }
+
+  /* If the phone is especially narrow, deliberately stack the three
+     words instead of ever breaking AUTHORIZATION itself. */
+  @media (max-width: 380px) {
+    #information #tab-card-info .authorization-tab-title .auth-title-the,
+    #information #tab-card-info .authorization-tab-title .auth-title-word,
+    #information #tab-card-info .authorization-tab-title .auth-title-card {
+      display: block !important;
+      width: max-content !important;
+      max-width: 100% !important;
+    }
+
+    #information #tab-card-info .authorization-tab-title .auth-title-the,
+    #information #tab-card-info .authorization-tab-title .auth-title-word {
+      margin-right: 0 !important;
+    }
+  }
+}
 </style>
 
 </body>
