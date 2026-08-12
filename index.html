@@ -8648,6 +8648,898 @@ select:focus-visible{
     scroll-behavior:auto!important;
   }
 }
+</style><style id="swaafa-mobile-final-viewport-polish">
+/* =========================================================
+   SWAFAA — FINAL MOBILE / TABLET VIEWPORT POLISH
+   Targets the exact problems visible at ~789–884px as well
+   as standard phones. Desktop >900px remains unchanged.
+   ========================================================= */
+
+html, body{
+  max-width:100%;
+  overflow-x:hidden !important;
+}
+
+@media (max-width:900px){
+
+  /* ---------- FIXED START EXPERIENCE ----------
+     Keep it useful without covering the page. */
+  .start-btn,
+  #startExperience,
+  .start-experience{
+    left:50% !important;
+    right:auto !important;
+    bottom:14px !important;
+    width:auto !important;
+    max-width:calc(100vw - 32px) !important;
+    min-width:0 !important;
+    padding:15px 20px !important;
+    white-space:nowrap !important;
+    transform:translateX(-50%) !important;
+    font-size:11px !important;
+    line-height:1 !important;
+    z-index:5000 !important;
+  }
+
+  .start-btn:hover,
+  #startExperience:hover,
+  .start-experience:hover{
+    transform:translateX(-50%) translateY(-1px) !important;
+  }
+
+  /* ---------- GENERAL CONTAINMENT ----------
+     No section may create a second horizontal canvas. */
+  #campaign,
+  #donate,
+  #information,
+  #card,
+  #contact{
+    width:100% !important;
+    max-width:100vw !important;
+    overflow-x:clip !important;
+  }
+
+  /* ---------- BUILT DIFFERENT / RESOURCES ----------
+     Keep the full headline inside the viewport. */
+  #campaign{
+    padding:72px 0 58px !important;
+  }
+
+  #campaign > .wrap{
+    width:calc(100% - 40px) !important;
+    max-width:760px !important;
+    margin:0 auto !important;
+    min-width:0 !important;
+  }
+
+  #campaign .swaafa-campaign-head{
+    display:block !important;
+    width:100% !important;
+    min-width:0 !important;
+    margin:0 !important;
+  }
+
+  #campaign .swaafa-campaign-kicker{
+    max-width:100% !important;
+    white-space:normal !important;
+    overflow-wrap:normal !important;
+    margin-bottom:18px !important;
+  }
+
+  #campaign .swaafa-campaign-head > div{
+    width:100% !important;
+    min-width:0 !important;
+  }
+
+  #campaign .swaafa-campaign-head h2{
+    display:block !important;
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
+    font-size:clamp(56px,10vw,78px) !important;
+    line-height:.80 !important;
+    letter-spacing:-.075em !important;
+    white-space:normal !important;
+    overflow:visible !important;
+    overflow-wrap:normal !important;
+    word-break:normal !important;
+    text-wrap:balance !important;
+  }
+
+  /* The old gallery is intentionally hidden on this interlude;
+     prevent any hidden grid child from contributing width. */
+  #campaign .swaafa-campaign-grid{
+    display:none !important;
+    width:0 !important;
+    max-width:0 !important;
+    overflow:hidden !important;
+  }
+
+  /* ---------- QUICK ACTIONS ----------
+     Two clean columns on tablet/phone instead of a very tall
+     single-column rail. */
+  #campaign .swafaa-quick-actions{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    width:100% !important;
+    max-width:760px !important;
+    margin:38px auto 0 !important;
+    border:1px solid #d0d0cc !important;
+    min-width:0 !important;
+  }
+
+  #campaign .swafaa-quick-action{
+    min-width:0 !important;
+    min-height:102px !important;
+    padding:22px 12px !important;
+    border-right:1px solid #d0d0cc !important;
+    border-bottom:1px solid #d0d0cc !important;
+    gap:10px !important;
+    box-sizing:border-box !important;
+  }
+
+  #campaign .swafaa-quick-action:nth-child(even){
+    border-right:0 !important;
+  }
+
+  #campaign .swafaa-quick-action:nth-last-child(-n+2){
+    border-bottom:0 !important;
+  }
+
+  #campaign .swafaa-quick-action svg{
+    width:32px !important;
+    height:32px !important;
+    flex:0 0 auto !important;
+  }
+
+  #campaign .swafaa-quick-action span{
+    display:block !important;
+    max-width:100% !important;
+    font-size:8.5px !important;
+    line-height:1.25 !important;
+    letter-spacing:.08em !important;
+    white-space:normal !important;
+  }
+
+  /* Fifth action occupies the full final row. */
+  #campaign .swafaa-quick-action:last-child{
+    grid-column:1 / -1 !important;
+    border-right:0 !important;
+    border-bottom:0 !important;
+  }
+
+  /* ---------- SUPPORT ----------
+     Stop the authorization media from peeking into the viewport
+     from the side; if present, center it below the CTA. */
+  #donate{
+    padding:76px 0 88px !important;
+    text-align:center !important;
+  }
+
+  #donate > .wrap:first-child{
+    width:calc(100% - 40px) !important;
+    max-width:680px !important;
+    margin:0 auto !important;
+    min-width:0 !important;
+  }
+
+  #donate .wrap::before{
+    margin-bottom:28px !important;
+    white-space:normal !important;
+  }
+
+  #donate h2{
+    width:100% !important;
+    max-width:680px !important;
+    margin:0 auto 30px !important;
+    font-size:clamp(58px,11vw,92px) !important;
+    line-height:.78 !important;
+    letter-spacing:-.075em !important;
+    overflow-wrap:normal !important;
+    word-break:normal !important;
+    text-wrap:balance !important;
+  }
+
+  #donate p{
+    width:100% !important;
+    max-width:620px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    font-size:16px !important;
+    line-height:1.65 !important;
+  }
+
+  #donate .btn-donate{
+    width:min(100%,420px) !important;
+    margin:28px auto 0 !important;
+    min-height:58px !important;
+    padding:0 22px !important;
+  }
+
+  #donate > .swafaa-card-media-wrap{
+    width:calc(100% - 40px) !important;
+    max-width:760px !important;
+    margin:52px auto 0 !important;
+    min-width:0 !important;
+  }
+
+  #donate #media-card{
+    width:100% !important;
+    max-width:520px !important;
+    margin:0 auto !important;
+    min-width:0 !important;
+    overflow:hidden !important;
+  }
+
+  #donate #media-card img{
+    display:block !important;
+    width:100% !important;
+    height:auto !important;
+    max-width:100% !important;
+  }
+
+  /* ---------- INFORMATION HUB ----------
+     At tablet widths the old desktop geometry is too wide.
+     Make the reading surface intentionally centered. */
+  #information > .wrap{
+    width:calc(100% - 40px) !important;
+    max-width:760px !important;
+    margin:0 auto !important;
+    min-width:0 !important;
+  }
+
+  #information .info-header{
+    width:100% !important;
+    max-width:760px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  #information .tab-panel{
+    width:100% !important;
+    max-width:760px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding:52px 34px !important;
+    min-width:0 !important;
+    overflow-x:hidden !important;
+  }
+
+  #information .tab-panel h3{
+    max-width:100% !important;
+    overflow-wrap:normal !important;
+    word-break:normal !important;
+    text-wrap:balance !important;
+  }
+
+  #information .tab-panel > p{
+    max-width:680px !important;
+  }
+
+  #information .info-grid{
+    grid-template-columns:1fr !important;
+    gap:0 !important;
+    width:100% !important;
+  }
+
+  #information .info-card{
+    width:100% !important;
+    min-width:0 !important;
+    padding:28px 0 !important;
+    border-left:0 !important;
+    border-right:0 !important;
+    border-radius:0 !important;
+  }
+
+  #information .info-card h4,
+  #information .info-card p{
+    max-width:100% !important;
+  }
+
+  #information .info-actions{
+    width:100% !important;
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:10px !important;
+  }
+
+  #information .info-actions > *{
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 !important;
+  }
+
+  /* Resource links stay inside the reading column. */
+  #information .resource-list{
+    grid-template-columns:1fr !important;
+    width:100% !important;
+  }
+
+  /* ---------- GENERAL BUTTON CONTAINMENT ---------- */
+  .btn,
+  .btn-donate,
+  .contact-btn,
+  .top-direct-btn,
+  .resource-inline-link{
+    max-width:100% !important;
+    box-sizing:border-box !important;
+  }
+}
+
+@media (max-width:600px){
+  #campaign > .wrap,
+  #donate > .wrap:first-child,
+  #donate > .swafaa-card-media-wrap,
+  #information > .wrap{
+    width:calc(100% - 32px) !important;
+  }
+
+  #campaign .swaafa-campaign-head h2{
+    font-size:clamp(52px,14vw,68px) !important;
+    line-height:.82 !important;
+  }
+
+  #campaign .swafaa-quick-actions{
+    grid-template-columns:1fr !important;
+  }
+
+  #campaign .swafaa-quick-action{
+    border-right:0 !important;
+    border-bottom:1px solid #d0d0cc !important;
+    min-height:88px !important;
+  }
+
+  #campaign .swafaa-quick-action:last-child{
+    grid-column:auto !important;
+    border-bottom:0 !important;
+  }
+
+  #information .tab-panel{
+    padding:44px 24px !important;
+  }
+
+  #information .info-card{
+    padding:24px 0 !important;
+  }
+
+  #donate h2{
+    font-size:clamp(54px,15vw,72px) !important;
+  }
+}
+
+@media (max-width:380px){
+  #campaign .swaafa-campaign-head h2{
+    font-size:52px !important;
+  }
+
+  #information .tab-panel{
+    padding-left:20px !important;
+    padding-right:20px !important;
+  }
+
+  .start-btn,
+  #startExperience,
+  .start-experience{
+    max-width:calc(100vw - 24px) !important;
+    padding-left:16px !important;
+    padding-right:16px !important;
+  }
+}
+</style><style id="swaafa-infohub-v2-alignment-fix">
+/* =========================================================
+   SWAFAA — INFO / EXPLORE MOBILE ALIGNMENT V2
+   Fixes the remaining card overflow visible at high-DPI
+   mobile/tablet captures. No desktop layout changes.
+   ========================================================= */
+
+@media (max-width:900px){
+
+  /* Establish one reliable reading column. */
+  #information{
+    width:100% !important;
+    max-width:100vw !important;
+    overflow-x:hidden !important;
+  }
+
+  #information > .wrap{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    padding-left:16px !important;
+    padding-right:16px !important;
+    margin:0 auto !important;
+    box-sizing:border-box !important;
+  }
+
+  #information .tab-panel{
+    width:100% !important;
+    max-width:760px !important;
+    min-width:0 !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding:54px 28px !important;
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+  }
+
+  /* The question/reading cards are one clean editorial column. */
+  #information .info-grid{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:0 !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+    box-sizing:border-box !important;
+  }
+
+  #information .info-card,
+  #information .info-card:nth-child(even){
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    min-height:0 !important;
+    margin:0 !important;
+    padding:30px 0 !important;
+    border-left:0 !important;
+    border-right:0 !important;
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+  }
+
+  #information .info-card h4{
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 0 12px !important;
+    padding:0 !important;
+    font-family:'Archivo Black',sans-serif !important;
+    font-size:20px !important;
+    line-height:1.02 !important;
+    letter-spacing:-.035em !important;
+    overflow-wrap:break-word !important;
+    word-break:normal !important;
+    white-space:normal !important;
+  }
+
+  #information .info-card p{
+    display:block !important;
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    font-family:'Inter',sans-serif !important;
+    font-size:15px !important;
+    line-height:1.65 !important;
+    letter-spacing:0 !important;
+    white-space:normal !important;
+    overflow-wrap:break-word !important;
+    word-break:normal !important;
+  }
+
+  /* No child can force the reading column wider than its parent. */
+  #information .tab-panel *,
+  #information .info-grid *,
+  #information .info-card *{
+    min-width:0 !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+  }
+
+  /* Keep the question list itself aligned to the same left edge. */
+  #information #tab-questions .faq-search-wrap,
+  #information #tab-questions .faq-list,
+  #information #tab-questions .faq-item{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+  }
+
+  #information #tab-questions .faq-item summary{
+    grid-template-columns:42px minmax(0,1fr) 26px !important;
+    width:100% !important;
+    min-width:0 !important;
+    box-sizing:border-box !important;
+  }
+
+  #information #tab-questions .faq-item summary span:not(.q-number){
+    min-width:0 !important;
+    overflow-wrap:break-word !important;
+    white-space:normal !important;
+  }
+
+  #information #tab-questions .faq-answer{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    padding-left:42px !important;
+    padding-right:0 !important;
+    box-sizing:border-box !important;
+    overflow-wrap:break-word !important;
+  }
+
+  /* Download/action rows use the exact same column. */
+  #information .info-actions{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:10px !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+
+  #information .info-actions > *{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    box-sizing:border-box !important;
+  }
+}
+
+@media (max-width:600px){
+  #information > .wrap{
+    padding-left:12px !important;
+    padding-right:12px !important;
+  }
+
+  #information .tab-panel{
+    padding:42px 24px !important;
+  }
+
+  #information .info-card{
+    padding:28px 0 !important;
+  }
+
+  #information .info-card h4{
+    font-size:19px !important;
+    line-height:1.04 !important;
+  }
+
+  #information .info-card p{
+    font-size:15px !important;
+    line-height:1.65 !important;
+  }
+}
+
+@media (max-width:380px){
+  #information > .wrap{
+    padding-left:10px !important;
+    padding-right:10px !important;
+  }
+
+  #information .tab-panel{
+    padding-left:20px !important;
+    padding-right:20px !important;
+  }
+
+  #information .info-card h4{
+    font-size:18px !important;
+  }
+
+  #information .info-card p{
+    font-size:14px !important;
+  }
+}
+</style><style id="swaafa-final-info-alignment-v3">
+/* =========================================================
+   SWAFAA — FINAL INFORMATION HUB ALIGNMENT
+   Desktop + tablet + mobile
+   Keeps the existing content, tabs and interaction intact.
+   Only corrects the editorial reading geometry.
+   ========================================================= */
+
+/* ---------- DESKTOP: one centered editorial canvas ---------- */
+@media (min-width:901px){
+  #information{
+    width:100% !important;
+    max-width:100vw !important;
+    overflow-x:hidden !important;
+  }
+
+  #information > .wrap{
+    width:min(1180px, calc(100% - 64px)) !important;
+    max-width:1180px !important;
+    min-width:0 !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    box-sizing:border-box !important;
+  }
+
+  #information .info-header{
+    width:100% !important;
+    max-width:1180px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    box-sizing:border-box !important;
+  }
+
+  #information .top-info-tabs{
+    width:100% !important;
+    max-width:1180px !important;
+    box-sizing:border-box !important;
+  }
+
+  #information .top-info-tabs-inner{
+    width:100% !important;
+    min-width:0 !important;
+    box-sizing:border-box !important;
+  }
+
+  #information .tab-panel{
+    width:100% !important;
+    max-width:1180px !important;
+    min-width:0 !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding:56px 48px !important;
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+  }
+
+  #information .tab-panel > h3,
+  #information .tab-panel > p,
+  #information .tab-panel > .info-grid,
+  #information .tab-panel > .faq-search-wrap,
+  #information .tab-panel > #faqList,
+  #information .tab-panel > .info-actions{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+    box-sizing:border-box !important;
+  }
+
+  #information .tab-panel > p{
+    max-width:820px !important;
+  }
+
+  /* Two equal editorial columns — same top, same width,
+     same internal left/right edges. */
+  #information .info-grid{
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+    column-gap:0 !important;
+    row-gap:0 !important;
+    margin-top:34px !important;
+    border-top:1px solid #ddd !important;
+    box-sizing:border-box !important;
+  }
+
+  #information .info-card,
+  #information .info-card:nth-child(even){
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    min-height:180px !important;
+    margin:0 !important;
+    padding:32px 34px !important;
+    box-sizing:border-box !important;
+    border:0 !important;
+    border-bottom:1px solid #ddd !important;
+    border-right:1px solid #ddd !important;
+    overflow:hidden !important;
+  }
+
+  #information .info-card:nth-child(2n){
+    border-right:0 !important;
+  }
+
+  #information .info-card h4{
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 0 13px !important;
+    padding:0 !important;
+    font-family:'Archivo Black',sans-serif !important;
+    font-size:22px !important;
+    line-height:1.02 !important;
+    letter-spacing:-.035em !important;
+    overflow-wrap:break-word !important;
+    white-space:normal !important;
+  }
+
+  #information .info-card p{
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
+    font-family:'Inter',sans-serif !important;
+    font-size:15px !important;
+    line-height:1.65 !important;
+    letter-spacing:0 !important;
+    overflow-wrap:break-word !important;
+    white-space:normal !important;
+  }
+
+  #information .info-actions{
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:10px !important;
+  }
+
+  #information .info-actions > *{
+    width:100% !important;
+    min-width:0 !important;
+    box-sizing:border-box !important;
+  }
+}
+
+/* ---------- TABLET / MOBILE: one deliberate reading column ---------- */
+@media (max-width:900px){
+  #information{
+    width:100% !important;
+    max-width:100vw !important;
+    overflow-x:hidden !important;
+  }
+
+  #information > .wrap{
+    width:calc(100% - 40px) !important;
+    max-width:760px !important;
+    min-width:0 !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding:0 !important;
+    box-sizing:border-box !important;
+  }
+
+  #information .info-header{
+    width:100% !important;
+    max-width:760px !important;
+    min-width:0 !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    box-sizing:border-box !important;
+  }
+
+  #information .top-info-tabs,
+  #information .top-info-tabs-inner{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    box-sizing:border-box !important;
+  }
+
+  #information .tab-panel{
+    width:100% !important;
+    max-width:760px !important;
+    min-width:0 !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding:48px 28px !important;
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+  }
+
+  #information .info-grid{
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:0 !important;
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    margin:30px 0 0 !important;
+    border-top:1px solid #ddd !important;
+    box-sizing:border-box !important;
+  }
+
+  #information .info-card,
+  #information .info-card:nth-child(even){
+    display:block !important;
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    min-height:0 !important;
+    margin:0 !important;
+    padding:28px 0 !important;
+    border:0 !important;
+    border-bottom:1px solid #ddd !important;
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+  }
+
+  #information .info-card h4{
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 0 12px !important;
+    padding:0 !important;
+    font-family:'Archivo Black',sans-serif !important;
+    font-size:20px !important;
+    line-height:1.04 !important;
+    letter-spacing:-.035em !important;
+    overflow-wrap:break-word !important;
+    white-space:normal !important;
+  }
+
+  #information .info-card p{
+    display:block !important;
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
+    font-family:'Inter',sans-serif !important;
+    font-size:15px !important;
+    line-height:1.65 !important;
+    letter-spacing:0 !important;
+    overflow-wrap:break-word !important;
+    white-space:normal !important;
+  }
+
+  #information .info-card *,
+  #information .info-grid *,
+  #information .tab-panel *{
+    min-width:0 !important;
+    box-sizing:border-box !important;
+  }
+
+  #information .tab-panel > p{
+    width:100% !important;
+    max-width:680px !important;
+  }
+
+  #information .info-actions{
+    width:100% !important;
+    max-width:100% !important;
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:10px !important;
+  }
+
+  #information .info-actions > *{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+  }
+}
+
+/* ---------- PHONE ---------- */
+@media (max-width:600px){
+  #information > .wrap{
+    width:calc(100% - 32px) !important;
+  }
+
+  #information .tab-panel{
+    padding:42px 24px !important;
+  }
+
+  #information .info-card{
+    padding:26px 0 !important;
+  }
+
+  #information .info-card h4{
+    font-size:19px !important;
+    line-height:1.05 !important;
+  }
+
+  #information .info-card p{
+    font-size:15px !important;
+    line-height:1.65 !important;
+  }
+}
+
+/* ---------- VERY SMALL PHONE ---------- */
+@media (max-width:380px){
+  #information > .wrap{
+    width:calc(100% - 24px) !important;
+  }
+
+  #information .tab-panel{
+    padding-left:20px !important;
+    padding-right:20px !important;
+  }
+
+  #information .info-card h4{
+    font-size:18px !important;
+  }
+
+  #information .info-card p{
+    font-size:14px !important;
+  }
+}
 </style></head>
 <body>
 <!-- SWAFAA TOP NAVIGATION -->
