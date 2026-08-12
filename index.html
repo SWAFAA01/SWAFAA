@@ -6987,6 +6987,109 @@ button,
   }
 }
 
+
+/* ==========================================================
+   V10 — MOBILE VIEWPORT CORRECTION
+   Fix only the mobile navigation spacing and Authorization
+   headline containment. Desktop typography is preserved.
+   ========================================================== */
+
+@media (max-width: 900px) {
+  /* Navigation: give SUPPORT / DONATE and CONTACT / GET INVOLVED
+     a deliberate, consistent separation. */
+  .swafaa-nav-links {
+    gap: 24px !important;
+  }
+
+  .swafaa-nav-links a[href="#donate"] {
+    margin-right: 4px !important;
+  }
+
+  .swafaa-nav-links a[href="#contact"] {
+    margin-left: 8px !important;
+    padding-left: 2px !important;
+    padding-right: 10px !important;
+  }
+
+  /* Authorization: never allow the long word to run outside the
+     viewport. It remains one complete word; only THE / AUTHORIZATION
+     / CARD are allowed to form separate lines. */
+  #card .wrap {
+    width: calc(100% - 32px) !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+  }
+
+  #card h2 {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: clamp(31px, 8.8vw, 64px) !important;
+    line-height: .86 !important;
+    letter-spacing: -.055em !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    hyphens: none !important;
+  }
+
+  #card h2 .no-break-word {
+    display: inline-block !important;
+    white-space: nowrap !important;
+    max-width: 100% !important;
+    font-size: 1em !important;
+  }
+
+  /* The card title must never be wider than the actual viewport. */
+  #card {
+    overflow-x: clip !important;
+  }
+
+  #card p {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .swafaa-nav-links {
+    gap: 23px !important;
+  }
+
+  .swafaa-nav-links a[href="#donate"] {
+    margin-right: 5px !important;
+  }
+
+  .swafaa-nav-links a[href="#contact"] {
+    margin-left: 9px !important;
+  }
+
+  #card .wrap {
+    width: calc(100% - 28px) !important;
+  }
+
+  /* Sized specifically so AUTHORIZATION remains intact on narrow
+     360–430px phones rather than becoming AUTHORIZATIO / N. */
+  #card h2 {
+    font-size: clamp(30px, 8.25vw, 52px) !important;
+    line-height: .88 !important;
+    letter-spacing: -.052em !important;
+  }
+}
+
+@media (max-width: 380px) {
+  #card h2 {
+    font-size: 30px !important;
+    letter-spacing: -.045em !important;
+  }
+
+  .swafaa-nav-links {
+    gap: 21px !important;
+  }
+}
+
 </style>
 
 </body>
