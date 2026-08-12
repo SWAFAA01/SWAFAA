@@ -6266,7 +6266,7 @@ img, video, iframe {
 <!-- CARD SECTION -->
 <section class="card-section swaafa-reveal" id="card">
   <div class="wrap fade-in">
-    <h2>The Authorization Card</h2>
+    <h2>The <span class="no-break-word">Authorization</span> Card</h2>
     <p>The card is simple. By signing, you're requesting the opportunity to vote. That's it. One signature. One choice. No obligations. No changes to your contract.</p>
     <div class="card-actions">
       <a href="SWAFAA_Authorization_Card.pdf" download class="btn btn-solid-light">Download the Card</a>
@@ -6883,6 +6883,108 @@ button,
 .swafaa-nav-brand {
   position: relative !important;
   top: 3px !important;
+}
+
+
+/* ==========================================================
+   FINAL MOBILE TYPOGRAPHY + NAVIGATION CONTAINMENT
+   Desktop remains untouched. Mobile gets its own precise
+   containment so no word, nav item, or title can be clipped.
+   ========================================================== */
+@media (max-width: 900px) {
+  /* Keep the primary navigation inside the viewport while allowing
+     intentional horizontal swiping instead of clipping. */
+  .swafaa-top-nav {
+    overflow: hidden !important;
+  }
+  .swafaa-nav-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding-left: 14px !important;
+    padding-right: 0 !important;
+    gap: 0 !important;
+  }
+  .swafaa-nav-brand {
+    flex: 0 0 auto !important;
+    margin-right: 12px !important;
+  }
+  .swafaa-nav-links {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    width: auto !important;
+    margin-left: 0 !important;
+    padding-right: 22px !important;
+    justify-content: flex-start !important;
+    gap: 20px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-x: contain !important;
+    scrollbar-width: none !important;
+  }
+  .swafaa-nav-links::-webkit-scrollbar { display: none !important; }
+  .swafaa-nav-links a {
+    flex: 0 0 auto !important;
+    min-width: max-content !important;
+    font-size: clamp(7px, 2.05vw, 9px) !important;
+    letter-spacing: .075em !important;
+    white-space: nowrap !important;
+  }
+  .swafaa-nav-links a[href="#contact"] {
+    min-width: max-content !important;
+    margin-left: 3px !important;
+    padding-right: 6px !important;
+  }
+
+  /* Authorization headline: words may wrap, but NEVER split the
+     word AUTHORIZATION across lines. */
+  #card h2 {
+    max-width: 100% !important;
+    width: 100% !important;
+    font-size: clamp(43px, 12.2vw, 72px) !important;
+    line-height: .84 !important;
+    letter-spacing: -.065em !important;
+    overflow: visible !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    hyphens: none !important;
+  }
+  #card h2 .no-break-word {
+    white-space: nowrap !important;
+  }
+
+  /* Prevent the large editorial side statement from ever occupying
+     the same horizontal space as the headline on narrow screens. */
+  #card .wrap::after {
+    width: min(330px, 100%) !important;
+    box-sizing: border-box !important;
+    clear: both !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .swafaa-nav-inner {
+    padding-left: 12px !important;
+  }
+  .swafaa-nav-brand {
+    margin-right: 9px !important;
+    font-size: 21px !important;
+  }
+  .swafaa-nav-links {
+    gap: 18px !important;
+    padding-right: 18px !important;
+  }
+  .swafaa-nav-links a {
+    font-size: 7.5px !important;
+    letter-spacing: .06em !important;
+  }
+
+  #card h2 {
+    font-size: clamp(40px, 11.7vw, 62px) !important;
+    line-height: .86 !important;
+    letter-spacing: -.06em !important;
+  }
 }
 
 </style>
