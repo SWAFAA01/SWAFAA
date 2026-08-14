@@ -11015,6 +11015,19 @@ html.phone-desktop-site #why .why-text > div {
   }
 }
 </style>
+
+<style id="navigation-centering-only">
+/* NAVIGATION FIX ONLY — center the Explore navigation on desktop/desktop-site views.
+   Normal narrow mobile keeps its existing horizontal scroll rail. */
+#information .top-info-tabs-inner {
+  justify-content: center !important;
+}
+@media (max-width: 900px) {
+  #information .top-info-tabs-inner {
+    justify-content: flex-start !important;
+  }
+}
+</style>
 </head>
 <body>
 <!-- SWAFAA TOP NAVIGATION -->
