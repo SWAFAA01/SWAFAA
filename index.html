@@ -5598,6 +5598,16 @@ section .wrap{z-index:2}
   border-left:1px solid var(--sw-darkline)!important;
 }
 
+/* ---------- MOBILE HERO SPACING FIX ONLY ---------- */
+@media (max-width: 700px) {
+  #top {
+    min-height: auto !important;
+    height: auto !important;
+    align-items: flex-start !important;
+    padding: 42px 0 72px !important;
+  }
+}
+
 /* ---------- HERO: black field + typography, not a card ---------- */
 #top{
   min-height:calc(100svh - 68px)!important;
