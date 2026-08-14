@@ -10995,6 +10995,26 @@ html.phone-desktop-site #why .why-text > div {
   hyphens: none !important;
 }
 </style>
+
+<style id="v53-desktop-site-phone-spacing-only">
+/* V53 — DESKTOP SITE ON PHONE: SPACING ONLY.
+   Normal mobile and normal desktop are untouched.
+   This only tightens the oversized hero vertical space when a phone
+   is displaying the Desktop Site / wide touch viewport. */
+@media (min-width:1201px) and (max-width:1800px) and (pointer:coarse) {
+  html.phone-desktop-site #top {
+    min-height:clamp(560px,72svh,760px) !important;
+    height:auto !important;
+    padding:40px 0 64px !important;
+    align-items:center !important;
+    box-sizing:border-box !important;
+  }
+  html.phone-desktop-site #top .wrap {
+    min-height:0 !important;
+    align-items:center !important;
+  }
+}
+</style>
 </head>
 <body>
 <!-- SWAFAA TOP NAVIGATION -->
